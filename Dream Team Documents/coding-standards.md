@@ -55,7 +55,7 @@ void getValue(){
 
 Program Flow
 --------------------------------------------------------------------------------
-###Conditional Statements
+### Conditional Statements
 -	Conditional statements and parentheses should be separated by a space
 -	Iterative loops over numbers should use single letter variable names such as i, j, k, m
 -	Iterative loops over objects should use ‘it’
