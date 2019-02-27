@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FirstPerson : MonoBehaviour
 {
+    public Camera cam;
+
     public float mouseSensitivity = 100.0f;
     public float clampAngle = 80.0f;
 
