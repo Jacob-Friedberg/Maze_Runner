@@ -1,14 +1,14 @@
+using Valve.VR;
 using UnityEngine;
 using UnityEngine.XR;
 using System.Collections;
-using Valve.VR;
 
 public class PlayerControl : MonoBehaviour
 {
   /////////////////////////////////
   private int LEFT = 0;
   private int RIGHT = 1;
-  ////////////////////////////////////
+  /////////////////////////////////
 
   public float move_scale = 1.25f;
   public SteamVR_Action_Boolean grabWorldAction;
@@ -17,7 +17,6 @@ public class PlayerControl : MonoBehaviour
 
   // TODO Hard Code
   public SteamVR_Input_Sources[] hand = new SteamVR_Input_Sources[2];
-
 
   private bool[] isDragging = new bool[2];
   // private bool isRightDragging = false;
@@ -60,5 +59,4 @@ public class PlayerControl : MonoBehaviour
       isDragging[handType] = false;
     }
   }
-
 }
