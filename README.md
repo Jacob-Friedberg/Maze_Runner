@@ -6,3 +6,4 @@ CS383 Project as an adventure clone
 2. Open Unity
 3. Select the open project button in the top left of the landing screen
 4. Locate the maze runner project at the location you placed it from the download
+5. Click the select folder button to begin working on the project
