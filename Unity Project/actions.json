@@ -10,11 +10,13 @@
     },
     {
       "name": "/actions/default/in/GrabPinch",
-      "type": "boolean"
+      "type": "boolean",
+      "requirement": "mandatory"
     },
     {
       "name": "/actions/default/in/GrabGrip",
-      "type": "boolean"
+      "type": "boolean",
+      "requirement": "suggested"
     },
     {
       "name": "/actions/default/in/Pose",
@@ -42,7 +44,8 @@
     },
     {
       "name": "/actions/default/in/GrabWorld",
-      "type": "boolean"
+      "type": "boolean",
+      "requirement": "mandatory"
     },
     {
       "name": "/actions/default/out/Haptic",
