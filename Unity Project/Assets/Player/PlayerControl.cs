@@ -32,8 +32,8 @@ public class PlayerControl : MonoBehaviour
     // Debug.Log("XR Model: " + XRDevice.model);
     // Debug.Log("XR Device Active: " + XRSettings.isDeviceActive);
     // Debug.Log("XR Enabled: " + XRSettings.enabled);
-    controller[LEFT] = transform.Find("VRRig").Find("LeftController").gameObject;
-    controller[RIGHT] = transform.Find("VRRig").Find("RightController").gameObject;
+    controller[LEFT] = transform.Find("SteamVRObjects").Find("LeftController").gameObject;
+    controller[RIGHT] = transform.Find("SteamVRObjects").Find("RightController").gameObject;
 
     // hand[LEFT] = SteamVR_Input_Sources.GetSource();
   }
