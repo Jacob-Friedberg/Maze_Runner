@@ -6,23 +6,21 @@ using System.Collections;
 public class PlayerControl : MonoBehaviour
 {
   /////////////////////////////////
-  private int LEFT = 0;
-  private int RIGHT = 1;
+  private const int LEFT = 0;
+  private const int RIGHT = 1;
   /////////////////////////////////
 
   public float move_scale = 1.25f;
   public SteamVR_Action_Boolean grabWorldAction;
-
-  private GameObject[] controller = new GameObject[2];
-
-  // TODO Hard Code
   public SteamVR_Input_Sources[] hand = new SteamVR_Input_Sources[2];
 
-  private bool[] isDragging = new bool[2];
-  // private bool isRightDragging = false;
+  public bool resetDebugPlayer;
+  public GameObject debugPlayer;
 
+  private GameObject[] controller = new GameObject[2];
+  private bool[] isDragging = new bool[2];
   private Vector3[] startPosition = new Vector3[2];
-  // private Vector3 rightStartPosition;
+
 
 
   void Start() {
@@ -33,11 +31,13 @@ public class PlayerControl : MonoBehaviour
     // Debug.Log("XR Enabled: " + XRSettings.enabled);
     controller[LEFT] = transform.Find("SteamVRObjects").Find("LeftController").gameObject;
     controller[RIGHT] = transform.Find("SteamVRObjects").Find("RightController").gameObject;
-
-    // hand[LEFT] = SteamVR_Input_Sources.GetSource();
   }
 
   void Update() {
+    if(resetDebugPlayer || !debugPlayer.activeSelf) {
+      resetDebugPlayer = false;
+      debugPlayer.transform.position = transform.position;
+    }
     ProcessControllerInput(LEFT);
     ProcessControllerInput(RIGHT);
   }
