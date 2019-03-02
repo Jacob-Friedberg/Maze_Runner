@@ -20,8 +20,12 @@ public class PlayerControl : MonoBehaviour
   private GameObject[] controller = new GameObject[2];
   private bool[] isDragging = new bool[2];
   private Vector3[] startPosition = new Vector3[2];
+  private bool isVR;
+  private bool isTargetVR;
 
-
+  public GameObject playerTarget;
+  public GameObject targetVRParent;
+  public GameObject targetDebugParent;
 
   void Start() {
     // Debug.Log("XR Device Present: " + XRDevice.isPresent);
@@ -34,7 +38,17 @@ public class PlayerControl : MonoBehaviour
   }
 
   void Update() {
-    if(resetDebugPlayer || !debugPlayer.activeSelf) {
+    isVR = transform.Find("SteamVRObjects").gameObject.activeSelf;
+
+    if (isVR) {
+      playerTarget.transform.SetParent(targetVRParent.transform);
+      playerTarget.transform.position = targetVRParent.transform.position;
+    } else {
+      playerTarget.transform.SetParent(targetDebugParent.transform);
+      playerTarget.transform.position = targetDebugParent.transform.position;
+    }
+
+    if(resetDebugPlayer || isVR) {
       resetDebugPlayer = false;
       debugPlayer.transform.position = transform.position;
     }

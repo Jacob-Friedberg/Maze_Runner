@@ -13,13 +13,13 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
+    m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: Walk
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 0}
   - m_Name: Dead
     m_Type: 4
@@ -401,7 +401,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Walk
-  m_Speed: 1.5
+  m_Speed: -0.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101003841423172284}
@@ -791,7 +791,7 @@ AnimatorStateMachine:
     m_Position: {x: -264, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102818656452799660}
-    m_Position: {x: -264, y: 120, z: 0}
+    m_Position: {x: -252, y: 312, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102587562753123292}
     m_Position: {x: -229, y: 185, z: 0}

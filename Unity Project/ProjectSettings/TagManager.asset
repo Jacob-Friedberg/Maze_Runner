@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Target
   - ItemGoal
+  - DeathTrigger
+  - Sword
+  - projectile
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
