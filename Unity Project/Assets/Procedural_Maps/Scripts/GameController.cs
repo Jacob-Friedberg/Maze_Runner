@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
 {
     //1W
     [SerializeField] private FpsMovement player;
+    [SerializeField] private bool stress;
     [SerializeField] private Text timeLabel;
     [SerializeField] private Text scoreLabel;
 
@@ -23,7 +24,7 @@ public class GameController : MonoBehaviour
     private bool goalReached;
 
     //3
-    void Start()
+    public void Start()
     {
         generator = GetComponent<MazeConstructor>();
         StartNewGame();
@@ -37,13 +38,52 @@ public class GameController : MonoBehaviour
     }
 
     //5
+
+IEnumerator waiter(int i)
+{
+    generator.GenerateNewMaze(i, i, OnStartTrigger, OnGoalTrigger);
+
+    //Wait for 4 seconds
+    yield return new WaitForSeconds(4);
+
+   
+    //Wait for 2 seconds
+    yield return new WaitForSeconds(2);
+     generator.GenerateNewMaze(i*i, i*i, OnStartTrigger, OnGoalTrigger);
+}
+
     private void StartNewMaze()
     {
+        float x;
+        float y;
+        float z;
+        if(stress)
+        {
+            for (int i = 1; i < 10; i*=3)
+            {
+                StartCoroutine(waiter(i));
+            }
+           // generator.GenerateNewMaze(13, 15, OnStartTrigger, OnGoalTrigger);
+            
+            x = generator.startCol * generator.hallWidth;
+            y = 1;
+            z = generator.startRow * generator.hallWidth;
+            player.transform.position = new Vector3(x, y, z);
+           
+
+            goalReached = false;
+            player.enabled = true;
+
+            // restart timer
+            timeLimit -= reduceLimitBy;
+            startTime = DateTime.Now;
+        }
+        else
         generator.GenerateNewMaze(13, 15, OnStartTrigger, OnGoalTrigger);
 
-        float x = generator.startCol * generator.hallWidth;
-        float y = 1;
-        float z = generator.startRow * generator.hallWidth;
+         x = generator.startCol * generator.hallWidth;
+         y = 1;
+         z = generator.startRow * generator.hallWidth;
         player.transform.position = new Vector3(x, y, z);
 
         goalReached = false;
