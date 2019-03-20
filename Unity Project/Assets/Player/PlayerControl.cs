@@ -10,8 +10,6 @@ public class PlayerControl : MonoBehaviour
   private const int RIGHT = 1;
     /////////////////////////////////
 
-  public bool receivingInput;
-
   public float move_scale = 1.25f;
   public SteamVR_Action_Boolean grabWorldAction;
   public SteamVR_Input_Sources[] hand = new SteamVR_Input_Sources[2];
@@ -55,16 +53,16 @@ public class PlayerControl : MonoBehaviour
       debugPlayer.transform.position = transform.position;
     }
 
-    ProcessControllerInput(LEFT);
+    if(!isDragging[RIGHT]){
+      ProcessControllerInput(LEFT);
+    }
 
-        if (receivingInput == false)
-        {
-            ProcessControllerInput(RIGHT);
-        }
+    if(!isDragging[LEFT]){
+      ProcessControllerInput(RIGHT);
+    }
   }
 
   void ProcessControllerInput(int handType) {
-        receivingInput = true;
 
     if (grabWorldAction.GetState(hand[handType])) {
       if(!isDragging[handType]) {
@@ -81,7 +79,5 @@ public class PlayerControl : MonoBehaviour
     } else {
       isDragging[handType] = false;
     }
-
-        receivingInput = false;
   }
 }
