@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWeakness : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
     void OnTriggerEnter(Collider col)
     {
