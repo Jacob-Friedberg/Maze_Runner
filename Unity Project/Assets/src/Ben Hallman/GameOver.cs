@@ -1,13 +1,21 @@
-﻿using UnityEngine;
+﻿/* GameOver.cs
+ * Benjamin
+   Script pertaining to the game being over. */
+
+using UnityEngine;
 
 public class GameOverManager : MonoBehaviour
 {
-    public PlayerHealth playerHealth;       // Reference to the player's health.
-    public float restartDelay = 5f;         // Time to wait before restarting the level
+    // Reference to the player's health.
+    public PlayerHealth playerHealth;
+    // Time to wait before restarting the level
+    public float restartDelay = 5f;
 
 
-    Animator anim;                          // Reference to the animator component.
-    float restartTimer;                     // Timer to count up to restarting the level
+    // Reference to the animator component.
+    Animator anim;
+    // Timer to count up to restarting the level
+    float restartTimer;
 
 
     void Awake()
@@ -19,19 +27,19 @@ public class GameOverManager : MonoBehaviour
 
     void Update()
     {
-        // If the player has run out of health...
+        // If the player has run out of health.
         if (playerHealth.currentHealth <= 0)
         {
-            // ... tell the animator the game is over.
+            // Tell the animator the game is over.
             anim.SetTrigger("GameOver");
 
-            // .. increment a timer to count up to restarting.
+            // Increment a timer to count up to restarting.
             restartTimer += Time.deltaTime;
 
-            // .. if it reaches the restart delay...
+            // If it reaches the restart delay.
             if (restartTimer >= restartDelay)
             {
-                // .. then reload the currently loaded scene.
+                // Then reload the currently loaded scene.
                 Application.LoadLevel(Application.loadedLevel);
             }
         }

@@ -1,3 +1,7 @@
+/* PlayerControl.cs
+ * Benjamin
+   Script pertaining to managing the palyer controls and movement. */
+
 using Valve.VR;
 using UnityEngine;
 using UnityEngine.XR;
@@ -5,12 +9,10 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour
 {
-  /////////////////////////////////
   private const int LEFT = 0;
   private const int RIGHT = 1;
-  /////////////////////////////////
 
-  public float move_scale = 1.25f;
+  public float moveScale = 1.25f;
   public SteamVR_Action_Boolean grabWorldAction;
   public SteamVR_Input_Sources[] hand = new SteamVR_Input_Sources[2];
 
@@ -27,7 +29,8 @@ public class PlayerControl : MonoBehaviour
   public GameObject targetVRParent;
   public GameObject targetDebugParent;
 
-  void Start() {
+  void Start()
+  {
     // Debug.Log("XR Device Present: " + XRDevice.isPresent);
     // Debug.Log("XR User Presence: " + XRDevice.userPresence);
     // Debug.Log("XR Model: " + XRDevice.model);
@@ -37,46 +40,55 @@ public class PlayerControl : MonoBehaviour
     controller[RIGHT] = transform.Find("SteamVRObjects").Find("RightController").gameObject;
   }
 
-  void Update() {
+  void Update()
+  {
     isVR = transform.Find("SteamVRObjects").gameObject.activeSelf;
 
-    if (isVR) {
+    if (isVR)
+    {
       playerTarget.transform.SetParent(targetVRParent.transform);
       playerTarget.transform.position = targetVRParent.transform.position;
-    } else {
+    }
+    else
+    {
       playerTarget.transform.SetParent(targetDebugParent.transform);
       playerTarget.transform.position = targetDebugParent.transform.position;
     }
 
-    if(resetDebugPlayer || isVR) {
+    if(resetDebugPlayer || isVR)
+    {
       resetDebugPlayer = false;
       debugPlayer.transform.position = transform.position;
     }
 
-    if(!isDragging[RIGHT]){
-      ProcessControllerInput(LEFT);
+    if(!isDragging[RIGHT])
+    {
+      processControllerInput(LEFT);
     }
 
-    if(!isDragging[LEFT]){
-      ProcessControllerInput(RIGHT);
+    if(!isDragging[LEFT])
+    {
+      processControllerInput(RIGHT);
     }
   }
 
-  void ProcessControllerInput(int handType) {
+  void processControllerInput(int handType)
+  {
 
-    if (grabWorldAction.GetState(hand[handType])) {
-      if(!isDragging[handType]) {
+    if (grabWorldAction.GetState(hand[handType]))
+    {
+      if(!isDragging[handType])
+      {
         isDragging[handType] = true;
         startPosition[handType] = controller[handType].transform.position;
       }
 
-      Vector3 offset = new Vector3 (
-        startPosition[handType].x - controller[handType].transform.position.x,
-        0,
-        startPosition[handType].z - controller[handType].transform.position.z
-      );
-      transform.position += (move_scale * offset);
-    } else {
+      Vector3 offset = new Vector3 (startPosition[handType].x - controller[handType].transform.position.x,
+                                    0, startPosition[handType].z - controller[handType].transform.position.z);
+      transform.position += (moveScale * offset);
+    }
+    else
+    {
       isDragging[handType] = false;
     }
   }
