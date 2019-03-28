@@ -83,7 +83,8 @@ public class PlayerControl : MonoBehaviour
         startPosition[handType] = controller[handType].transform.position;
       }
 
-      Vector3 offset = new Vector3 (startPosition[handType].x - controller[handType].transform.position.x, 0, startPosition[handType].z - controller[handType].transform.position.z);
+      Vector3 offset = new Vector3 (startPosition[handType].x - controller[handType].transform.position.x,
+                                    0, startPosition[handType].z - controller[handType].transform.position.z);
       transform.position += (moveScale * offset);
     }
     else
