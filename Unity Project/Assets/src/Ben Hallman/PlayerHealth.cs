@@ -1,22 +1,38 @@
-﻿using UnityEngine;
+﻿/* PlayerHealth.cs
+ * Benjamin
+   Script pertaining to the management of the player's health. */
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int startingHealth = 100;                            // The amount of health the player starts the game with.
-    public int currentHealth;                                   // The current health the player has.
-    public Slider healthSlider;                                 // Reference to the UI's health bar.
-    public Image damageImage;                                   // Reference to an image to flash on the screen on being hurt.
-    public AudioClip deathClip;                                 // The audio clip to play when the player dies.
-    public float flashSpeed = 5f;                               // The speed the damageImage will fade at.
-    public Color flashColour = new Color(1f, 0f, 0f, 0.1f);     // The colour the damageImage is set to, to flash.
+    // The amount of health the player starts the game with.
+    public int startingHealth = 100;
+    // The current health the player has.
+    public int currentHealth;
+    // Reference to the UI's health bar.
+    public Slider healthSlider;
+    // Reference to an image to flash on the screen on being hurt.
+    public Image damageImage;
+    // The audio clip to play when the player dies.
+    public AudioClip deathClip;
+    // The speed the damageImage will fade at.
+    public float flashSpeed = 5f;
+    // The colour the damageImage is set to, to flash.
+    public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
 
-    Animator anim;                                              // Reference to the Animator component.
-    AudioSource playerAudio;                                    // Reference to the AudioSource component.
-    PlayerControl playerMovement;                               // Reference to the player's movement.
-    bool isDead;                                                // Whether the player is dead.
-    bool damaged;                                               // True when the player gets damaged.
+    // Reference to the Animator component.
+    Animator anim;
+    // Reference to the AudioSource component.
+    AudioSource playerAudio;
+    // Reference to the player's movement.
+    PlayerControl playerMovement;
+    // Whether the player is dead.
+    bool isDead;
+    // True when the player gets damaged.
+    bool damaged;
 
 
     void Start()
@@ -32,16 +48,15 @@ public class PlayerHealth : MonoBehaviour
 
     void Awake()
     {
-        // If the player has just been damaged...
+        // If the player has just been damaged.
         if (damaged)
         {
-            // ... set the colour of the damageImage to the flash colour.
+            // Set the colour of the damageImage to the flash colour.
             damageImage.color = flashColour;
         }
-        // Otherwise...
         else
         {
-            // ... transition the colour back to clear.
+            // Transition the colour back to clear.
             damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
 
@@ -72,16 +87,16 @@ public class PlayerHealth : MonoBehaviour
         // Play the hurt sound effect.
         playerAudio.Play();
 
-        // If the player has lost all it's health and the death flag hasn't been set yet...
+        // If the player has lost all it's health and the death flag hasn't been set yet.
         if (currentHealth <= 0 && !isDead)
         {
-            // ... it should die.
-            Death();
+            // It should die.
+            death();
         }
     }
 
 
-    void Death()
+    void death()
     {
         // Set the death flag so this function won't be called again.
         isDead = true;
