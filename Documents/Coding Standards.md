@@ -1,4 +1,3 @@
-
 Dream Team Coding Standards
 ================================================================================
 
@@ -33,7 +32,8 @@ const int EXAMPLE_CONST = 0;
 #### Example:
 
 ```csharp
-class ExampleClass{
+class ExampleClass
+{
   //classy stuff
 }
 ```
@@ -44,11 +44,13 @@ Naming Functions
 ### Functions
 -	The same naming conventions for variables should be used for naming functions, camel case
 -	Functions should be named according to its job, with a descriptive verb (get, do, etc.)
+- opening and closing curly braces should be on their own line, in vertical alignment
 
 #### Example:
 
 ```csharp
-void getValue(){
+void getValue()
+{
   //function stuff
 }
 ```
@@ -64,25 +66,33 @@ Program Flow
 #### Example:
 
 ```csharp
-if( condition ){
+if( condition )
+{
   // statements
-}else if( condition ){
+}
+else if( condition )
+{
   // other statements
-}else{
+}
+else
+{
   // more statements
 }
 
-while( condition ){
+while( condition )
+{
   // statements
 }
 
-for( int i=0; i<MAX; i++ ){
+for( int i=0; i<MAX; i++ )
+{
   // statements
 }
 
 if( condition1
  || condition2
- || condition3 ){
+ || condition3 )
+ {
   // statements
 }
 ```
@@ -96,7 +106,8 @@ if( condition1
 
 #### Example:
 ```csharp
-if ((val1 > val2) && (val1 > val3)){
+if ((val1 > val2) && (val1 > val3))
+{
   // Take appropriate action.
 }
 ```
