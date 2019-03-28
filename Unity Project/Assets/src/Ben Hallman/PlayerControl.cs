@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviour
   /////////////////////////////////
   private const int LEFT = 0;
   private const int RIGHT = 1;
-    /////////////////////////////////
+  /////////////////////////////////
 
   public float move_scale = 1.25f;
   public SteamVR_Action_Boolean grabWorldAction;
