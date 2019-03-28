@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public int startingHealth = 100;                            // The amount of health the player starts the game with.
     public int currentHealth;                                   // The current health the player has.
-    public Slider healthSlider;                                 // Reference to the UI's health bar.
+    // public Slider healthSlider;                                 // Reference to the UI's health bar.
     public Image damageImage;                                   // Reference to an image to flash on the screen on being hurt.
     public AudioClip deathClip;                                 // The audio clip to play when the player dies.
     public float flashSpeed = 5f;                               // The speed the damageImage will fade at.
@@ -14,20 +14,18 @@ public class PlayerHealth : MonoBehaviour
 
 
     Animator anim;                                              // Reference to the Animator component.
-    AudioSource playerAudio; C                          // Reference to the AudioSource component.
-    PlayerMovement playerMovement;                              // Reference to the player's movement.
+    AudioSource playerAudio;                           // Reference to the AudioSource component.
+    PlayerControl playerMovement;                              // Reference to the player's movement.
     bool isDead;                                                // Whether the player is dead.
     bool damaged;                                               // True when the player gets damaged.
 
 
-    void Awake()
+    void Start()
     {
         // Setting up the references.
         anim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
-        playerMovement = GetComponent<PlayerMovement>();
-        playerShooting = GetComponentInChildren<PlayerShooting>();
-
+        playerMovement = GetComponent<PlayerControl>();
         // Set the initial health of the player.
         currentHealth = startingHealth;
     }
@@ -52,7 +50,14 @@ public class PlayerHealth : MonoBehaviour
         damaged = false;
     }
 
-
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.CompareTag("DeathTrigger"))
+        {
+            Debug.Log("PLAYER HIT");
+            TakeDamage(25);
+        }
+    }
     public void TakeDamage(int amount)
     {
         // Set the damaged flag so the screen will flash.
@@ -62,9 +67,10 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= amount;
 
         // Set the health bar's value to the current health.
-        healthSlider.value = currentHealth;
+        // healthSlider.value = currentHealth;
 
         // Play the hurt sound effect.
+        playerAudio.clip = deathClip;
         playerAudio.Play();
 
         // If the player has lost all it's health and the death flag hasn't been set yet...
@@ -81,9 +87,6 @@ public class PlayerHealth : MonoBehaviour
         // Set the death flag so this function won't be called again.
         isDead = true;
 
-        // Turn off any remaining shooting effects.
-        playerShooting.DisableEffects();
-
         // Tell the animator that the player is dead.
         anim.SetTrigger("Die");
 
@@ -93,6 +96,5 @@ public class PlayerHealth : MonoBehaviour
 
         // Turn off the movement and shooting scripts.
         playerMovement.enabled = false;
-        playerShooting.enabled = false;
     }
 }
