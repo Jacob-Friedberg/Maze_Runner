@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3001,12 +3001,12 @@ PrefabInstance:
     - target: {fileID: 772488555205620370, guid: 6abd1be7dce406f44979da46b2df7c5f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.5
+      value: 9.47
       objectReference: {fileID: 0}
     - target: {fileID: 772488555205620370, guid: 6abd1be7dce406f44979da46b2df7c5f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 772488555205620370, guid: 6abd1be7dce406f44979da46b2df7c5f,
         type: 3}
@@ -3058,6 +3058,31 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 2354773122658879639}
+    - target: {fileID: 8822113358227550666, guid: 6abd1be7dce406f44979da46b2df7c5f,
+        type: 3}
+      propertyPath: dragonHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8822113358227550666, guid: 6abd1be7dce406f44979da46b2df7c5f,
+        type: 3}
+      propertyPath: swordDamage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8822113358227550666, guid: 6abd1be7dce406f44979da46b2df7c5f,
+        type: 3}
+      propertyPath: attackDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8822113358227550666, guid: 6abd1be7dce406f44979da46b2df7c5f,
+        type: 3}
+      propertyPath: difficulty
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 772488555205620399, guid: 6abd1be7dce406f44979da46b2df7c5f,
+        type: 3}
+      propertyPath: m_Radius
+      value: 2.63
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6abd1be7dce406f44979da46b2df7c5f, type: 3}
 --- !u!1 &1185782668374324168 stripped
