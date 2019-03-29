@@ -11,6 +11,7 @@ TagManager:
   - projectile
   - FxTemporaire
   - Generated
+  - Controller
   layers:
   - Default
   - TransparentFX
