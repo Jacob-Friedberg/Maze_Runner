@@ -3083,7 +3083,8 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 2.63
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1185782667949594079, guid: 6abd1be7dce406f44979da46b2df7c5f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6abd1be7dce406f44979da46b2df7c5f, type: 3}
 --- !u!1 &1185782668374324168 stripped
 GameObject:
@@ -3091,6 +3092,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1185782668374324167}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1185782668374324169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1185782667949594068, guid: 6abd1be7dce406f44979da46b2df7c5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1185782668374324167}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1185782668374324170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185782668374324169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b10a1b7b0b9c7bd0b92a7991862bc3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragon: {fileID: 1185782668374324168}
 --- !u!1 &2354773122658879639 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1850026167678469990, guid: 299fd13fae37c5a4eb2d1264b33ff575,
