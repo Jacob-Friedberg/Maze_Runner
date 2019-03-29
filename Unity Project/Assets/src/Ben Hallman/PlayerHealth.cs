@@ -46,7 +46,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = startingHealth;
     }
 
-    void Awake()
+    void Update()
     {
         // If the player has just been damaged.
         if (damaged)
