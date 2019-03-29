@@ -21,7 +21,7 @@ public class Portal: MonoBehaviour
     }
     void OnCollisionEnter (Collision col)
     {
-      if (col.gameObject.CompareTag("Control"))
+       if (col.gameObject.CompareTag("Controller"))
       {
         Debug.Log ("Change Scene Now!");
       }
