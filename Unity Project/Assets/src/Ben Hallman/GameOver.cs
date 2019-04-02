@@ -4,19 +4,24 @@
 
 using UnityEngine;
 
-public class GameOverManager : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
-    // Reference to the player's health.
-    public PlayerHealth playerHealth;
-    // Time to wait before restarting the level
+    // The speed the damageImage will fade at.
     public float restartDelay = 5f;
-
-
-    // Reference to the animator component.
+    // The audio clip to play when the player is damaged.
+    public AudioClip deathClip;
+    // Reference to the AudioSource component.
+    AudioSource playerAudio;
+    // Reference to the Animator component.
     Animator anim;
+    // Reference to the player's movement.
+    PlayerControl playerMovement;
+    // Whether the player is dead.
+    bool isDead;
+    // True when the player gets damaged.
+    bool damaged;
     // Timer to count up to restarting the level
     float restartTimer;
-
 
     void Awake()
     {
@@ -28,7 +33,7 @@ public class GameOverManager : MonoBehaviour
     void Update()
     {
         // If the player has run out of health.
-        if (playerHealth.currentHealth <= 0)
+        if (isDead)
         {
             // Tell the animator the game is over.
             anim.SetTrigger("GameOver");
@@ -43,5 +48,21 @@ public class GameOverManager : MonoBehaviour
                 Application.LoadLevel(Application.loadedLevel);
             }
         }
+    }
+
+    public void Death()
+    {
+        // Set the death flag so this function won't be called again.
+        isDead = true;
+
+        // Tell the animator that the player is dead.
+        anim.SetTrigger("Die");
+
+        // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
+        playerAudio.clip = deathClip;
+        playerAudio.Play();
+
+        // Turn off the movement script.
+        playerMovement.enabled = false;
     }
 }
