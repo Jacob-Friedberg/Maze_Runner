@@ -16,7 +16,7 @@ public class DragonHead : MonoBehaviour
     if (col.gameObject.CompareTag("Sword"))
     {
       dragon.GetComponent<DragonAI>().TakeDamage();
-      yield return new WaitForSeconds(1);
+      StartCoroutine(dragon.GetComponent<DragonAI>().DragonDamageWait());
     }
   }
 }
