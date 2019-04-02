@@ -11,12 +11,15 @@ using UnityEngine;
 public class DragonHead : MonoBehaviour
 {
   public GameObject dragon;
+
   void OnTriggerEnter (Collider col)
   {
+    Debug.Log("OnTriggerEnter() called");
     if (col.gameObject.CompareTag("Sword"))
     {
+      Debug.Log("Sword Dragon Collision detected");
       dragon.GetComponent<DragonAI>().TakeDamage();
-      yield return new WaitForSeconds(1);
+      StartCoroutine(dragon.GetComponent<DragonAI>.DragonDespawnWait());
     }
   }
 }
