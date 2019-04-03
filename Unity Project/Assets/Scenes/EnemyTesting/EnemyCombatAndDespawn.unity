@@ -140,8 +140,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -250,8 +250,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -339,8 +339,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -570,8 +570,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -598,8 +598,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -764,8 +764,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -792,8 +792,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -942,8 +942,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -970,8 +970,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -1125,8 +1125,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3df27b9289d1e8c4fb82e0df4f4673ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_AgentTypeID: -1372625422
   m_CollectObjects: 0
   m_Size: {x: 10, y: 10, z: 10}
@@ -1180,8 +1180,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -1338,8 +1338,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -1366,8 +1366,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -1546,8 +1546,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -1574,8 +1574,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -1602,8 +1602,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -1691,8 +1691,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -1719,8 +1719,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -2084,8 +2084,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -2173,8 +2173,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -2201,8 +2201,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -2290,8 +2290,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -2318,8 +2318,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -2393,6 +2393,93 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 534b3ae6b15dbfc4d843a1e7efadd0cb, type: 3}
+--- !u!1001 &1740862617
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8828251379201408142, guid: d5fc79a1562e99146bdbe87ac2d3ead2,
+        type: 3}
+      propertyPath: m_Name
+      value: PUT CHALICE ON TOP OF THIS
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828251379201408142, guid: d5fc79a1562e99146bdbe87ac2d3ead2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828251379201408138, guid: d5fc79a1562e99146bdbe87ac2d3ead2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.554106
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828251379201408138, guid: d5fc79a1562e99146bdbe87ac2d3ead2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828251379201408138, guid: d5fc79a1562e99146bdbe87ac2d3ead2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -26.76102
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828251379201408138, guid: d5fc79a1562e99146bdbe87ac2d3ead2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828251379201408138, guid: d5fc79a1562e99146bdbe87ac2d3ead2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828251379201408138, guid: d5fc79a1562e99146bdbe87ac2d3ead2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828251379201408138, guid: d5fc79a1562e99146bdbe87ac2d3ead2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828251379201408138, guid: d5fc79a1562e99146bdbe87ac2d3ead2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828251379201408138, guid: d5fc79a1562e99146bdbe87ac2d3ead2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828251379201408138, guid: d5fc79a1562e99146bdbe87ac2d3ead2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8828251379201408138, guid: d5fc79a1562e99146bdbe87ac2d3ead2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8828251379201408133, guid: d5fc79a1562e99146bdbe87ac2d3ead2, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: d5fc79a1562e99146bdbe87ac2d3ead2, type: 3}
+--- !u!114 &1757586164 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5987217049501781283, guid: 299fd13fae37c5a4eb2d1264b33ff575,
+    type: 3}
+  m_PrefabInstance: {fileID: 4107644954545704945}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!1001 &1805957784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2484,8 +2571,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -2581,8 +2668,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_OverrideArea: 1
   m_Area: 1
   m_IgnoreFromBuild: 0
@@ -2946,7 +3033,7 @@ PrefabInstance:
     - target: {fileID: 8822113358227550666, guid: 6abd1be7dce406f44979da46b2df7c5f,
         type: 3}
       propertyPath: target
-      value: 
+      value:
       objectReference: {fileID: 2003621037}
     - target: {fileID: 8822113358227550666, guid: 6abd1be7dce406f44979da46b2df7c5f,
         type: 3}
@@ -2998,6 +3085,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b10a1b7b0b9c7bd0b92a7991862bc3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   dragon: {fileID: 1185782668374324168}
