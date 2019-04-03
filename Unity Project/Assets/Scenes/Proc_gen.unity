@@ -271,6 +271,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LadderToWorld
       objectReference: {fileID: 0}
+    - target: {fileID: 7709583393651144936, guid: 491c9687885384b0f9d924a6151b4925,
+        type: 3}
+      propertyPath: m_TagString
+      value: MazeToWorld
+      objectReference: {fileID: 0}
     - target: {fileID: 654459338137074269, guid: 491c9687885384b0f9d924a6151b4925,
         type: 3}
       propertyPath: m_LocalPosition.x
