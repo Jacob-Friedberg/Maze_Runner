@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class hit_controller : MonoBehaviour
 {
-    GameObject player;
+    public GameObject player;
+
     void Start()
     {
-      player = transform.parent.parent.gameObject;
+      // player = transform.parent.parent.parent.gameObject
     }
 
 
@@ -19,32 +20,37 @@ public class hit_controller : MonoBehaviour
       //Start menu to world 1
         if(col.gameObject.CompareTag("StartWorld"))
         {
-            SceneManager.LoadScene("world1");
+            player.GetComponent<PlayerControl>().Lock();
             player.transform.position = new Vector3(-103, 0, -43);
+            SceneManager.LoadScene("world1");
         }
 
         if(col.gameObject.CompareTag("MazeToWorld"))
         {
-            SceneManager.LoadScene("Proc_gen");
+            player.GetComponent<PlayerControl>().Lock();
             player.transform.position = new Vector3(3.75f, 0.5f, 3.75f);
+            SceneManager.LoadScene("Proc_gen");
         }
 
         if(col.gameObject.CompareTag("ToMazeExit"))
         {
-            SceneManager.LoadScene("world1");
+            player.GetComponent<PlayerControl>().Lock();
             player.transform.position = new Vector3(12, 0, -307);
+            SceneManager.LoadScene("world1");
         }
 
         if(col.gameObject.CompareTag("MazeToCastle"))
         {
-            SceneManager.LoadScene("Proc_gen");
+            player.GetComponent<PlayerControl>().Lock();
             player.transform.position = new Vector3(48.75f, 0.5f, 41.75f);
+            SceneManager.LoadScene("Proc_gen");
         }
 
         if(col.gameObject.CompareTag("ToMazeEntrance"))
         {
-            SceneManager.LoadScene("world1");
+            player.GetComponent<PlayerControl>().Lock();
             player.transform.position = new Vector3(87, 0, -43);
+            SceneManager.LoadScene("world1");
         }
 
     }

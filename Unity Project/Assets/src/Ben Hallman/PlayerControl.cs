@@ -29,8 +29,20 @@ public class PlayerControl : MonoBehaviour
   public GameObject targetVRParent;
   public GameObject targetDebugParent;
 
+  private bool do_controller_update;
+
+  public void Lock()
+  {
+    do_controller_update = false;
+  }
+  public void Unlock()
+  {
+    do_controller_update = true;
+  }
+
   void Start()
   {
+    do_controller_update = true;
     // Debug.Log("XR Device Present: " + XRDevice.isPresent);
     // Debug.Log("XR User Presence: " + XRDevice.userPresence);
     // Debug.Log("XR Model: " + XRDevice.model);
@@ -70,26 +82,30 @@ public class PlayerControl : MonoBehaviour
     {
       processControllerInput(RIGHT);
     }
+
+    Unlock();
+
   }
 
   void processControllerInput(int handType)
   {
-
-    if (grabWorldAction.GetState(hand[handType]))
-    {
-      if(!isDragging[handType])
+    if(do_controller_update){
+      if (grabWorldAction.GetState(hand[handType]))
       {
-        isDragging[handType] = true;
-        startPosition[handType] = controller[handType].transform.position;
-      }
+        if(!isDragging[handType])
+        {
+          isDragging[handType] = true;
+          startPosition[handType] = controller[handType].transform.position;
+        }
 
-      Vector3 offset = new Vector3 (startPosition[handType].x - controller[handType].transform.position.x,
-                                    0, startPosition[handType].z - controller[handType].transform.position.z);
-      transform.position += (moveScale * offset);
-    }
-    else
-    {
-      isDragging[handType] = false;
+        Vector3 offset = new Vector3 (startPosition[handType].x - controller[handType].transform.position.x,
+                                      0, startPosition[handType].z - controller[handType].transform.position.z);
+        transform.position += (moveScale * offset);
+      }
+      else
+      {
+        isDragging[handType] = false;
+      }
     }
   }
 }
