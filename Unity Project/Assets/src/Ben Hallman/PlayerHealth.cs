@@ -1,6 +1,7 @@
-﻿/* PlayerHealth.cs
- * Benjamin
- * Script pertaining to the management of the player's health. */
+﻿/* File: PlayerHealth.cs
+ * Author: Benjamin
+ * Description: The script that manages and controls the player's health,
+ * damage overlay, and calls the Death() function when the player dies.*/
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,28 +9,28 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
+    // Makes a GameObject called damageOverlay.
+    public GameObject damageOverlay;
     // The amount of health the player starts the game with.
     public int startingHealth = 100;
-    // The current health the player has.
+    // The player's current health.
     public int currentHealth;
-    // Reference to the UI's health bar.
-    public Slider healthSlider;
-    // Reference to an image to flash on the screen on being hurt.
-    public Image damageImage;
-    // The audio clip to play when the player is damaged.
+    // The audio clip that plays when the player takes damage.
     public AudioClip damageClip;
-    // The speed the damageImage will fade at.
+    // Reference to an image that flashes on the screen when the player takes damage.
+    public Image damageImage;
+    // The speed the damageImage will fade-out at.
     public float flashSpeed = 5f;
-    // The colour the damageImage is set to, to flash.
+    // The colour the damageImage is set to when it flashes.
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+
+    // A boolean statement representing if the player is being damaged.
+    bool damaged;
+
     // Reference to the AudioSource component.
     AudioSource playerAudio;
     // Reference to the player's movement.
     PlayerControl playerMovement;
-    // True when the player gets damaged.
-    bool damaged;
-
-    public GameObject damageOverlay;
 
     void Start()
     {
@@ -37,7 +38,6 @@ public class PlayerHealth : MonoBehaviour
         damageOverlay.SetActive(true);
 
         // Setting up the references.
-        // anim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         playerMovement = GetComponent<PlayerControl>();
 
@@ -84,17 +84,15 @@ public class PlayerHealth : MonoBehaviour
         // Reduce the current health by the damage amount.
         currentHealth -= amount;
 
-        // Set the health bar's value to the current health.
-        //healthSlider.value = currentHealth;
-
-        // Play the hurt sound effect.
+        // Play the player hurt sound effect.
         playerAudio.Play();
 
-        // If the player has lost all it's health and the death flag hasn't been set yet.
+        // If the player has lost all their health and the death flag has not been set yet.
         if (currentHealth <= 0)
         {
-            // It should die.
-            Debug.Log("Init Death");
+            // The player dies.
+            Debug.Log("INITIALIZE DEATH");
+            //Calls the Death() function in the GameOver script.
             GetComponent<GameOver>().Death();
         }
     }

@@ -1,6 +1,7 @@
-/* PlayerControl.cs
- * Benjamin
- * Script pertaining to managing the palyer controls and movement. */
+/* File: PlayerControl.cs
+ * Author: Benjamin
+ * Description: The script that manages every aspect of the player's controls
+ * and the movement/actions that follow. */
 
 using Valve.VR;
 using UnityEngine;
@@ -36,6 +37,7 @@ public class PlayerControl : MonoBehaviour
     // Debug.Log("XR Model: " + XRDevice.model);
     // Debug.Log("XR Device Active: " + XRSettings.isDeviceActive);
     // Debug.Log("XR Enabled: " + XRSettings.enabled);
+
     controller[LEFT] = transform.Find("SteamVRObjects").Find("LeftController").gameObject;
     controller[RIGHT] = transform.Find("SteamVRObjects").Find("RightController").gameObject;
   }
@@ -83,8 +85,9 @@ public class PlayerControl : MonoBehaviour
         startPosition[handType] = controller[handType].transform.position;
       }
 
-      Vector3 offset = new Vector3 (startPosition[handType].x - controller[handType].transform.position.x,
-                                    0, startPosition[handType].z - controller[handType].transform.position.z);
+      Vector3 offset = new Vector3 (startPosition[handType].x - controller[handType].transform.position.x, 0,
+                                    startPosition[handType].z - controller[handType].transform.position.z);
+
       transform.position += (moveScale * offset);
     }
     else

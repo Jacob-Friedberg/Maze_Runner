@@ -1,44 +1,45 @@
-﻿/* GameOver.cs
- * Benjamin
- * Script pertaining to the game being over. */
+﻿/* File: GameOver.cs
+ * Author: Benjamin
+ * Description: The script that manages what occures when the game is over and
+ * is used when the player's health reaches zero. */
 
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-    // Reference to the AudioSource component.
-    AudioSource playerAudio;
-    // Reference to an image to flash on the screen on being hurt.
-    public Image deathImage;
-    // The audio clip to play when the player dies.
+    // The audio clip that plays when the player dies.
     public AudioClip deathClip;
-    // The speed the damageImage will fade at.
+    // Reference to an image that flashes on the screen when the player dies.
+    public Image deathImage;
+    // The speed the deathImage will fade-out at.
     public float fadeSpeed = 5f;
-    // The colour the damageImage is set to, to flash.
+    // The colour the damageImage is set to when it flashes.
     private Color flashColour = new Color(1f, 0f, 0f, 1f);
-    // Reference to the player's movement.
-    PlayerControl playerMovement;
-    // Whether the player is dead.
+
+    // A boolean statement representing if the player is dead.
     bool isDead;
-    // True when the player gets damaged.
-    bool damaged;
-    // Timer to count up to restarting the level
+    // Timer to count up to restarting the game.
     float restartTimer;
 
-    public bool isPlayerDead(){
-      return isDead;
-    }
+    // Reference to the AudioSource component.
+    AudioSource playerAudio;
+    // Reference to the player's movement.
+    PlayerControl playerMovement;
 
     void Update()
     {
-        // If the player has run out of health.
+        // If the player has lost all their health.
         if (isDead)
         {
-            // Set the colour of the damageImage to the flash colour.
-            // deathImage.color = flashColour;
+            // Set the colour of the deathImage to the death colour and fade-out.
             deathImage.color = Color.Lerp(deathImage.color, Color.black, fadeSpeed * Time.deltaTime);
         }
+    }
+
+    public bool isPlayerDead()
+    {
+        return isDead;
     }
 
     public void Death()
@@ -46,9 +47,6 @@ public class GameOver : MonoBehaviour
         // Set the death flag so this function won't be called again.
         isDead = true;
         Debug.Log("PLAYER DIED");
-
-        // Tell the animator that the player is dead.
-        // anim.SetTrigger("Die");
 
         // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
         playerAudio.clip = deathClip;
