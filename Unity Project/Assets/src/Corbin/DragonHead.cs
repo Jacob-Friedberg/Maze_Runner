@@ -11,7 +11,6 @@ using UnityEngine;
 public class DragonHead : MonoBehaviour
 {
   public GameObject dragon;
-
   void OnTriggerEnter (Collider col)
   {
     Debug.Log("OnTriggerEnter() called");

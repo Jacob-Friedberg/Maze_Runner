@@ -1,6 +1,6 @@
 /* DragonAI.cs
 Corbin and Conrad
-This script controls the dragon's movement, movement animation, 
+This script controls the dragon's movement, movement animation,
 attacking, attacking animation and the dragon's health */
 
 using UnityEngine;
@@ -22,7 +22,7 @@ public class DragonAI : MonoBehaviour
   public int difficulty;
   private int dragonHealth;
   private int swordDamage;
-  
+
   void Start()
   {
     agent = this.GetComponent<NavMeshAgent>();
@@ -50,7 +50,7 @@ public class DragonAI : MonoBehaviour
 
   void Update()
   {
-    if (false == isAttacking && false == isDead) 
+    if (false == isAttacking && false == isDead)
     {
       agent.SetDestination(target.transform.position);
 
@@ -60,8 +60,8 @@ public class DragonAI : MonoBehaviour
         isAttacking = true;
         agent.isStopped = true;
       }
-    } else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Walk")) 
-    { 
+    } else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+    {
         isAttacking = false;
         agent.isStopped = false;
     }
@@ -94,6 +94,3 @@ public class DragonAI : MonoBehaviour
     yield return new WaitForSeconds(5);
   }
 }
-
-
-
