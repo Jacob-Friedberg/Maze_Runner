@@ -69,17 +69,28 @@ public class DragonAI : MonoBehaviour
 
 // This function subtracts damage from the dragon health
 // and despawns the dragon if all the heath is zero
-  // public void TakeDamage(){
-  //
-  //   dragonHealth = dragonHealth - swordDamage;
-  //
-  //   if (dragonHealth <= 0 && isDead == false) {
-  //     GetComponent<Animator>().Play("Dead_G", 0, 0f);
-  //     isDead = true;
-  //     agent.isStopped = true;
-  //     // Wait 5 seconds and then despawn the dragon
-  //     yield return new WaitForSeconds(5);
-  //     Destroy(this);
-  //   }
-  // }
+  public void TakeDamage(){
+    Debug.Log("TakeDamage() called");
+    dragonHealth = dragonHealth - swordDamage;
+
+    if (dragonHealth <= 0 && isDead == false) {
+      GetComponent<Animator>().Play("Dead_G", 0, 0f);
+      isDead = true;
+      agent.isStopped = true;
+      // Wait 5 seconds and then despawn the dragon
+      coroutine = DragonDespawnWait();
+      StartCoroutine(coroutine);
+      Destroy(this);
+    }
+  }
+  // This function waits for one second after the dragon takes
+  // damage so player cannot insta-kill dragon
+  private IEnumerator DragonDamageWait(){
+    yield return new WaitForSeconds(1);
+  }
+
+  // This function waits for 5 seconds 
+  public IEnumerator DragonDespawnWait(){
+    yield return new WaitForSeconds(5);
+  }
 }
