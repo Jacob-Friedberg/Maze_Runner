@@ -22,6 +22,8 @@ public class GameOver : MonoBehaviour
     // Timer to count up to restarting the game.
     float restartTimer;
 
+    //Creates a player GameObject.
+    GameObject player;
     // Reference to the AudioSource component.
     AudioSource playerAudio;
     // Reference to the player's movement.
@@ -54,5 +56,9 @@ public class GameOver : MonoBehaviour
 
         // Turn off the movement script.
         playerMovement.enabled = false;
+
+        // Teleports the player to the main menu location.
+        SceneManager.LoadScene("world1");
+        player.transform.position = new Vector3(-103, 0, -43);
     }
 }
