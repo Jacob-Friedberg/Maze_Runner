@@ -1,6 +1,6 @@
 ﻿/* GameOver.cs
  * Benjamin
-   Script pertaining to the game being over. */
+ * Script pertaining to the game being over. */
 
 using UnityEngine;
 using UnityEngine.UI;

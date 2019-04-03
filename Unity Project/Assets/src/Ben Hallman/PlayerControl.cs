@@ -1,6 +1,6 @@
 /* PlayerControl.cs
  * Benjamin
-   Script pertaining to managing the palyer controls and movement. */
+ * Script pertaining to managing the palyer controls and movement. */
 
 using Valve.VR;
 using UnityEngine;
