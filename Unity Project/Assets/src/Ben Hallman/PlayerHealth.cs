@@ -94,6 +94,8 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("INITIALIZE DEATH");
             //Calls the Death() function in the GameOver script.
             GetComponent<GameOver>().Death();
+            // Reset the initial health of the player.
+            currentHealth = startingHealth;
         }
     }
 }
