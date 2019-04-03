@@ -8,8 +8,6 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public GameOver GameOver;
-
     // The amount of health the player starts the game with.
     public int startingHealth = 100;
     // The current health the player has.
@@ -24,23 +22,22 @@ public class PlayerHealth : MonoBehaviour
     public float flashSpeed = 5f;
     // The colour the damageImage is set to, to flash.
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
-
-    // Reference to the Animator component.
-    Animator anim;
     // Reference to the AudioSource component.
     AudioSource playerAudio;
     // Reference to the player's movement.
     PlayerControl playerMovement;
-    // Whether the player is dead.
-    bool isDead;
     // True when the player gets damaged.
     bool damaged;
 
+    public GameObject damageOverlay;
 
     void Start()
     {
+        //Activate Image
+        damageOverlay.SetActive(true);
+
         // Setting up the references.
-        anim = GetComponent<Animator>();
+        // anim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         playerMovement = GetComponent<PlayerControl>();
 
@@ -59,7 +56,9 @@ public class PlayerHealth : MonoBehaviour
         else
         {
             // Transition the colour back to clear.
-            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+            if(!GetComponent<GameOver>().isPlayerDead()){
+              damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+            }
         }
 
         // Reset the damaged flag.
@@ -70,8 +69,10 @@ public class PlayerHealth : MonoBehaviour
     {
         if (col.gameObject.CompareTag("DeathTrigger"))
         {
-            TakeDamage(25);
-            Debug.Log("PLAYER DAMAGE DELT");
+            if(!GetComponent<GameOver>().isPlayerDead()){
+              TakeDamage(25);
+              Debug.Log("PLAYER DAMAGE DELT");
+            }
         }
     }
 
@@ -84,16 +85,17 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= amount;
 
         // Set the health bar's value to the current health.
-        healthSlider.value = currentHealth;
+        //healthSlider.value = currentHealth;
 
         // Play the hurt sound effect.
         playerAudio.Play();
 
         // If the player has lost all it's health and the death flag hasn't been set yet.
-        if (currentHealth <= 0 && !isDead)
+        if (currentHealth <= 0)
         {
             // It should die.
-            GameOver.Death();
+            Debug.Log("Init Death");
+            GetComponent<GameOver>().Death();
         }
     }
 }
