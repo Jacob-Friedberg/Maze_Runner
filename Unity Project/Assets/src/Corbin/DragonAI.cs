@@ -70,7 +70,7 @@ public class DragonAI : MonoBehaviour
 // This function subtracts damage from the dragon health
 // and despawns the dragon if all the heath is zero
   public void TakeDamage(){
-
+    Debug.Log("TakeDamage() called");
     dragonHealth = dragonHealth - swordDamage;
 
     if (dragonHealth <= 0 && isDead == false) {

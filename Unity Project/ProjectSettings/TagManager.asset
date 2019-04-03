@@ -11,7 +11,9 @@ TagManager:
   - projectile
   - FxTemporaire
   - Generated
+  - SwapScene
   - Controller
+  - StartWorld
   layers:
   - Default
   - TransparentFX
