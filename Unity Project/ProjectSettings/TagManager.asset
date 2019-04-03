@@ -16,6 +16,8 @@ TagManager:
   - StartWorld
   - ToMazeEntrance
   - ToMazeExit
+  - MazeToCastle
+  - MazeToWorld
   layers:
   - Default
   - TransparentFX
