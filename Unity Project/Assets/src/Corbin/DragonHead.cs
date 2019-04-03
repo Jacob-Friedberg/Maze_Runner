@@ -11,14 +11,17 @@ using UnityEngine;
 public class DragonHead : MonoBehaviour
 {
   public GameObject dragon;
-
+  private void Start()
+  {
+    dragon = GameObject.Find("DragonAI_2");
+  }
   void OnTriggerEnter (Collider col)
   {
     Debug.Log("OnTriggerEnter() called");
     if (col.gameObject.CompareTag("Sword"))
     {
       Debug.Log("Sword Dragon Collision detected");
-      dragon.GetComponent<DragonAI>().TakeDamage();
+      dragon.GetComponent<DragonAI_2>().TakeDamage();
       StartCoroutine(DragonDamageWait());
     }
   }
@@ -26,6 +29,6 @@ public class DragonHead : MonoBehaviour
   // This function waits for one second after the dragon takes
   // damage so player cannot insta-kill dragon
   private IEnumerator DragonDamageWait(){
-    yield return new WaitForSeconds(1);
+    yield return new WaitForSecondsRealtime(1);
   }
 }

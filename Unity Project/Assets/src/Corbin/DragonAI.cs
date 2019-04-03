@@ -11,21 +11,24 @@ using System.Collections;
 public class DragonAI : MonoBehaviour
 {
   [SerializeField] private float attackDistance;
+  [SerializeField] private GameObject dragon;
+  [SerializeField] private GameObject attackTrigger;
+  [SerializeField] private GameObject target;
+  // difficulty is to be set between 1 - 3 with 1 being Dr. BC mode and 3 being the hardest difficulty
+  public int difficulty;
+  // sceneID is to know which unique dragon to spawn in
+  public int sceneID;
+  private int dragonHealth;
+  private int swordDamage;
   private NavMeshAgent agent;
   private bool isAttacking = false;
   private bool isDead = false;
-
-
-  public GameObject attackTrigger;
-  public GameObject target;
-  // difficulty is to be set between 1 - 3 with 1 being Dr. BC mode and 3 being the hardest difficulty
-  public int difficulty;
-  private int dragonHealth;
-  private int swordDamage;
+  
   
   void Start()
   {
     agent = this.GetComponent<NavMeshAgent>();
+
     // Initialize difficulty settings
     switch (difficulty)
     {
@@ -46,6 +49,7 @@ public class DragonAI : MonoBehaviour
         swordDamage = 100;
         break;
     }
+
   }
 
   void Update()
@@ -56,19 +60,16 @@ public class DragonAI : MonoBehaviour
 
       if (Vector3.Distance(attackTrigger.transform.position, target.transform.position) < attackDistance)
       {
-        switch ((int)Random.Range(0.0f, 3.0f))
+        switch ((int)Random.Range(0.0f, 2.99f))
         {
             case 0:
             GetComponent<Animator>().Play("Atk_Claw_DBL", 0, 0f);
             break;
             case 1:
-            GetComponent<Animator>().Play("Atk_Claw_DBL", 0, 0f);
+            GetComponent<Animator>().Play("Atk_Claw_L", 0, 0f);
             break;
             case 2:
-            GetComponent<Animator>().Play("Atk_Claw_DBL", 0, 0f);
-            break;
-            case 3:
-            GetComponent<Animator>().Play("Atk_Claw_DBL", 0, 0f);
+            GetComponent<Animator>().Play("Atk_Claw_R", 0, 0f);
             break;
             default:
             break;
@@ -91,18 +92,22 @@ public class DragonAI : MonoBehaviour
     dragonHealth = dragonHealth - swordDamage;
 
     if (dragonHealth <= 0 && isDead == false) {
+      isDead = true;
+      Debug.Log("Dragon dying");
       GetComponent<Animator>().Play("Dead_G", 0, 0f);
       isDead = true;
       agent.isStopped = true;
       // Wait 5 seconds and then despawn the dragon
       StartCoroutine(DragonDespawnWait());
-      Destroy(this);
     }
   }
 
-  // This function waits for 5 seconds 
+  // This function waits for 5 seconds and then despawns the dragon
   private IEnumerator DragonDespawnWait(){
-    yield return new WaitForSeconds(5);
+    Debug.Log("Waiting for 5 seconds");
+    yield return new WaitForSecondsRealtime(5);
+    Debug.Log("Waited for 5 seconds");
+    Destroy(dragon);
   }
 }
 
