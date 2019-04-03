@@ -56,7 +56,24 @@ public class DragonAI : MonoBehaviour
 
       if (Vector3.Distance(attackTrigger.transform.position, target.transform.position) < attackDistance)
       {
-        GetComponent<Animator>().Play("Atk_Claw_DBL", 0, 0f);
+        switch ((int)Random.Range(0.0f, 3.0f))
+        {
+            case 0:
+            GetComponent<Animator>().Play("Atk_Claw_DBL", 0, 0f);
+            break;
+            case 1:
+            GetComponent<Animator>().Play("Atk_Claw_DBL", 0, 0f);
+            break;
+            case 2:
+            GetComponent<Animator>().Play("Atk_Claw_DBL", 0, 0f);
+            break;
+            case 3:
+            GetComponent<Animator>().Play("Atk_Claw_DBL", 0, 0f);
+            break;
+            default:
+            break;
+        }
+
         isAttacking = true;
         agent.isStopped = true;
       }
@@ -78,17 +95,13 @@ public class DragonAI : MonoBehaviour
       isDead = true;
       agent.isStopped = true;
       // Wait 5 seconds and then despawn the dragon
-      StartCoroutine(DragonDamageWait());
+      StartCoroutine(DragonDespawnWait());
       Destroy(this);
     }
   }
 
+  // This function waits for 5 seconds
   private IEnumerator DragonDespawnWait(){
     yield return new WaitForSeconds(5);
   }
-
-  public IEnumerator DragonDamageWait(){
-    yield return new WaitForSeconds(1);
-  }
-
 }
