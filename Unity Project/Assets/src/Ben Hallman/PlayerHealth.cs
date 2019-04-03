@@ -1,6 +1,6 @@
 ﻿/* PlayerHealth.cs
  * Benjamin
-   Script pertaining to the management of the player's health. */
+ * Script pertaining to the management of the player's health. */
 
 using UnityEngine;
 using UnityEngine.UI;
