@@ -1250,6 +1250,8 @@ MonoBehaviour:
   clickMode: 1
   cam: {fileID: 1850026166954803347}
   agent: {fileID: 1850026167817681933}
+  challice: {fileID: 0}
+  alter: {fileID: 0}
 --- !u!1 &1850026166722299390
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,6 +1373,8 @@ GameObject:
   - component: {fileID: 1850026166956347243}
   - component: {fileID: 1850026166949625311}
   - component: {fileID: 1745600702945815937}
+  - component: {fileID: 7252777913520942777}
+  - component: {fileID: 4742698603650347114}
   m_Layer: 26
   m_Name: LeftController
   m_TagString: Untagged
@@ -1488,6 +1492,31 @@ MonoBehaviour:
     m_TypeName: Valve.VR.SteamVR_Behaviour_Pose_DeviceIndexChangedEvent, SteamVR,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   broadcastDeviceChanges: 1
+--- !u!114 &7252777913520942777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850026166956145009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a6700db7046b547b91b045f1684cfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &4742698603650347114
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850026166956145009}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.19
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1850026166956161347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,6 +1528,8 @@ GameObject:
   - component: {fileID: 1850026166956352157}
   - component: {fileID: 1850026166949707073}
   - component: {fileID: 1745600702287474691}
+  - component: {fileID: 3659103054832693483}
+  - component: {fileID: 401408712812812233}
   m_Layer: 26
   m_Name: RightController
   m_TagString: Untagged
@@ -1616,6 +1647,31 @@ MonoBehaviour:
     m_TypeName: Valve.VR.SteamVR_Behaviour_Pose_DeviceIndexChangedEvent, SteamVR,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   broadcastDeviceChanges: 1
+--- !u!114 &3659103054832693483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850026166956161347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a6700db7046b547b91b045f1684cfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &401408712812812233
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850026166956161347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.19
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1850026166956164957
 GameObject:
   m_ObjectHideFlags: 0
@@ -2044,7 +2100,6 @@ Transform:
   - {fileID: 1850026166956359777}
   - {fileID: 1850026166956404551}
   - {fileID: 1847224624933042463}
-  - {fileID: 6275171835888699296}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2088,7 +2143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62edcd32fa55d6246a4a3d46df9e671d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_scale: 1.5
+  moveScale: 1.25
   grabWorldAction:
     actionPath: /actions/default/in/GrabWorld
     needsReinit: 0
@@ -2393,6 +2448,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c2caf78ae2d3e469a5e6566cde7684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingHealth: 100
+  currentHealth: 0
+  healthSlider: {fileID: 0}
+  damageImage: {fileID: 0}
+  deathClip: {fileID: 0}
+  flashSpeed: 5
+  flashColour: {r: 1, g: 0, b: 0, a: 0.1}
 --- !u!136 &1850026167678469995
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2564,46 +2626,3 @@ Transform:
   m_Father: {fileID: 1850026166956347243}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6018218928342664553
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6275171835888699296}
-  - component: {fileID: 7872806296991255953}
-  m_Layer: 0
-  m_Name: scene_controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6275171835888699296
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6018218928342664553}
-  m_LocalRotation: {x: -0, y: 0.27437893, z: -0, w: 0.9616217}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1850026166956449733}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7872806296991255953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6018218928342664553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c5990d455b4e82469ab0ef322ec98b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

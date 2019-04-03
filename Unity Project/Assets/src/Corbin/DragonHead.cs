@@ -11,12 +11,12 @@ using UnityEngine;
 public class DragonHead : MonoBehaviour
 {
   public GameObject dragon;
-  void OnTriggerEnter (Collider col)
-  {
-    if (col.gameObject.CompareTag("Sword"))
-    {
-      dragon.GetComponent<DragonAI>().TakeDamage();
-      yield return new WaitForSeconds(1);
-    }
-  }
+  // void OnTriggerEnter (Collider col)
+  // {
+  //   if (col.gameObject.CompareTag("Sword"))
+  //   {
+  //     dragon.GetComponent<DragonAI>().TakeDamage();
+  //     yield return new WaitForSeconds(1);
+  //   }
+  // }
 }

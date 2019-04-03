@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ItemRetrievalTest.unity
-    guid: d44268a47adb92c40b7b188e2b2ae1cc
+    path: Assets/Menus/start_menu.unity
+    guid: f215e384bc7cf054f9435862248f6487
+  - enabled: 1
+    path: Assets/Menus/maze_game.unity
+    guid: a2b5c65b4b4462f459a84a25e9bf4c03
   m_configObjects: {}
