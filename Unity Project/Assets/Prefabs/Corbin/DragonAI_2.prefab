@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3824189329239843321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3824189329239843319}
+  - component: {fileID: 3824189329239843320}
+  m_Layer: 0
+  m_Name: DragonAI_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3824189329239843319
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824189329239843321}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.5494847, y: -12.779985, z: -13.124119}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3824189329239843320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824189329239843321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee8dc9ca3d655d3b819de974ad4b8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDistance: 2.5
+  target: {fileID: 0}
+  DragonAI: {fileID: 3824189329239843321}
+  grundle: {fileID: 508632931, guid: 176fb99a35a40963784ba9a12df8add5, type: 3}
+  yorgle: {fileID: 1642098456, guid: 3cf86792349abaf07ac49a16e62b3264, type: 3}
+  rhindle: {fileID: 1185782668374324168, guid: 606593b8bf32fdf9eaa390e52a175974, type: 3}
+  grundleXCoordinate: 21.9
+  grundleYCoordinate: 13.14999
+  grundleZCoordinate: -25
+  yorgleXCoordinate: -0.0999999
+  yorgleYCoordinate: 13.14999
+  yorgleZCoordinate: -24.63588
+  rhindleXCoordinate: -19.22948
+  rhindleYCoordinate: 13.14999
+  rhindleZCoordinate: -24.63588
+  difficulty: 0
+  sceneID: 2
