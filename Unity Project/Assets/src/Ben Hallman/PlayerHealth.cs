@@ -17,6 +17,8 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
     // The audio clip that plays when the player takes damage.
     public AudioClip damageClip;
+    // The audio clip that plays when the player's health goes below a defined threshold.
+    public AudioClip heartBeatClip;
     // Reference to an image that flashes on the screen when the player takes damage.
     public Image damageImage;
     // The speed the damageImage will fade-out at.
@@ -43,10 +45,20 @@ public class PlayerHealth : MonoBehaviour
 
         // Set the initial health of the player.
         currentHealth = startingHealth;
+        // Set the initial playerAudio.clip
+        playerAudio.clip = damageClip;
     }
 
     void Update()
     {
+        if (currentHealth <= 25)
+        {
+            // Reset playerAudio.clip
+            playerAudio.clip = heartBeatClip;
+            // Play the heart beat sound effect.
+            playerAudio.play();
+        }
+
         // If the player has just been damaged.
         if (damaged)
         {
@@ -84,7 +96,7 @@ public class PlayerHealth : MonoBehaviour
         // Reduce the current health by the damage amount.
         currentHealth -= amount;
 
-        // Play the player hurt sound effect.
+        // Play the player damaged sound effect.
         playerAudio.Play();
 
         // If the player has lost all their health and the death flag has not been set yet.
