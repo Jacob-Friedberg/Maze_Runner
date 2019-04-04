@@ -31,6 +31,7 @@ public class DragonAI_2 : MonoBehaviour
   protected GameObject[] dragonObject = new GameObject[3];
   protected GameObject[] attackTrigger = new GameObject[3];
   private int numDragons;
+  
   void Start()
   {
     switch (sceneID)
@@ -84,24 +85,22 @@ public class DragonAI_2 : MonoBehaviour
         }
         break;
         default:
+        break;
     }
+    SpawnDragons();
     // Initialize difficulty settings
     switch (difficulty)
     {
         case 1:
-        dragonHealth = 100;
         swordDamage = 100;
         break;
         case 2:
-        dragonHealth = 100;
         swordDamage = 50;
         break;
         case 3:
-        dragonHealth = 100;
         swordDamage = 25;
         break;
         default:
-        dragonHealth = 100;
         swordDamage = 100;
         break;
     }
@@ -109,95 +108,97 @@ public class DragonAI_2 : MonoBehaviour
 
   void Update()
   {
-    if (false == isAttacking && false == isDead) 
+    for (int i = 0; i < numDragons; i++)
     {
-      agent.SetDestination(target.transform.position);
-
-      if (Vector3.Distance(attackTrigger.transform.position, target.transform.position) < attackDistance)
-      {
-        switch ((int)Random.Range(0.0f, 2.99f))
+        if (false == isAttacking[i] && false == isDead[i]) 
         {
-            case 0:
-            dragonObject.GetComponent<Animator>().Play("Atk_Claw_DBL", 0, 0f);
-            break;
-            case 1:
-            dragonObject.GetComponent<Animator>().Play("Atk_Claw_L", 0, 0f);
-            break;
-            case 2:
-            dragonObject.GetComponent<Animator>().Play("Atk_Claw_R", 0, 0f);
-            break;
-            default:
-            break;
+          agent[i].SetDestination(target.transform.position);
+
+            if (Vector3.Distance(attackTrigger[i].transform.position, target.transform.position) < attackDistance)
+            {
+              switch ((int)Random.Range(0.0f, 2.99f))
+                {
+                  case 0:
+                  dragonObject[i].GetComponent<Animator>().Play("Atk_Claw_DBL", 0, 0f);
+                  break;
+                  case 1:
+                  dragonObject[i].GetComponent<Animator>().Play("Atk_Claw_L", 0, 0f);
+                  break;
+                  case 2:
+                  dragonObject[i].GetComponent<Animator>().Play("Atk_Claw_R", 0, 0f);
+                  break;
+                  default:
+                  break;
+                }
+            isAttacking[i] = true;
+            agent[i].isStopped = true;
+          }
+      } 
+      else if (dragonObject[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Walk")) 
+        { 
+          isAttacking[i] = false;
+          agent[i].isStopped = false;
         }
-        
-        isAttacking = true;
-        agent.isStopped = true;
-      }
-    } else if (dragonObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Walk")) 
-    { 
-        isAttacking = false;
-        agent.isStopped = false;
     }
   }
   // This function subtracts damage from the dragon health
   // and despawns the dragon if all the heath is zero
-  public void TakeDamage()
+  public void TakeDamage(int x)
   {
     Debug.Log("TakeDamage() called");
-    dragonHealth = dragonHealth - swordDamage;
-    if (dragonHealth <= 0 && isDead == false) {
-      isDead = true;
+    dragonHealth[x] = dragonHealth[x] - swordDamage;
+    if (dragonHealth[x] <= 0 && isDead[x] == false) {
+      isDead[x] = true;
       Debug.Log("Dragon dying");
-      dragonObject.GetComponent<Animator>().Play("Dead_G", 0, 0f);
-      isDead = true;
-      agent.isStopped = true;
+      dragonObject[x].GetComponent<Animator>().Play("Dead_G", 0, 0f);
+      isDead[x] = true;
+      agent[x].isStopped = true;
       // Wait 5 seconds and then despawn the dragon
-      StartCoroutine(DragonDespawnWait());
+      StartCoroutine(DragonDespawnWait(x));
     }
   }
   // This function waits for 5 seconds and then despawns the dragon
-  private IEnumerator DragonDespawnWait()
+  private IEnumerator DragonDespawnWait(int x)
   {
     Debug.Log("Waiting for 5 seconds");
     yield return new WaitForSecondsRealtime(5);
     Debug.Log("Waited for 5 seconds");
-    Destroy(dragonObject);
-    Destroy(DragonAI);  
+    //Destroy(dragonObject[x]); 
   }
 
   private void SpawnDragons(){
     switch (sceneID)
       {
         case 0:
-        //grundle = Instantiate(grundle, new Vector3(grundleXCoordinate, grundleYCoordinate, grundleZCoordinate), gameObject.transform.rotation);
-        dragonObject = grundle;
+          for (int i = 0; i < numDragons; i++)
+              {
+
+                dragonObject[i] = Instantiate(yorgle, scene1DragonSpawnLocations[i], gameObject.transform.rotation);
+              }
         break;
         case 1:
-        //yorgle = Instantiate(yorgle, new Vector3(yorgleXCoordinate, yorgleYCoordinate, yorgleZCoordinate), gameObject.transform.rotation);
-        dragonObject = yorgle;
+          for (int i = 0; i < numDragons; i++)
+              {
+                dragonObject[i] = Instantiate(yorgle, scene2DragonSpawnLocations[i], gameObject.transform.rotation);
+              }
         break;
         case 2:
-        //rhindle = Instantiate(rhindle, new Vector3(rhindleXCoordinate, rhindleYCoordinate, rhindleZCoordinate), gameObject.transform.rotation);
-        dragonObject = rhindle;
+          for (int i = 0; i < numDragons; i++)
+              {
+                dragonObject[i] = Instantiate(yorgle, scene3DragonSpawnLocations[i], gameObject.transform.rotation);
+              }
         break; 
         default:
-        Debug.Log("UniqueDragons: Invalid scene ID");
+        Debug.Log("No dragons spawned");
         break;
       }
-    agent = dragonObject.GetComponent<NavMeshAgent>();
-    // Select attackTrigger object on dragon depending on scene
-    switch(sceneID){
-      case 0:
-      attackTrigger = GameObject.Find("GrundleAttackZone");
-      break;
-      case 1:
-      attackTrigger = GameObject.Find("YorgleAttackZone");
-      break;
-      case 2:
-      attackTrigger = GameObject.Find("RhindleAttackZone");
-      break;
-      default:
-      break;
+    for (int i = 0; i < numDragons; i++)
+    {
+      agent[i] = dragonObject[i].GetComponent<NavMeshAgent>();
+      attackTrigger[i] = dragonObject[i].GetComponent<DragonID>().returnDragonAttackTrigger();
+      dragonObject[i].GetComponent<DragonID>().id = i;
+      isDead[i] = false;
+      dragonHealth[i] = 100;
     }
   }
 }

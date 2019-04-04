@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 508632940}
   - component: {fileID: 508632939}
   - component: {fileID: 508632938}
+  - component: {fileID: 8802507612495114582}
   m_Layer: 8
   m_Name: Grundle
   m_TagString: Untagged
@@ -382,6 +383,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8802507612495114582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508632931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0757b7b86aa33d36ea17f60a4e28b57b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  dragonAttackTrigger: {fileID: 508632930}
 --- !u!1 &612136964
 GameObject:
   m_ObjectHideFlags: 0

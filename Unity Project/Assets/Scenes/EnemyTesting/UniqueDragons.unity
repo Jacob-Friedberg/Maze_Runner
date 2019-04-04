@@ -1937,7 +1937,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177632769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.12, y: 1.32, z: -15.77}
+  m_LocalPosition: {x: 7.02, y: 1.82, z: -26.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2707,7 +2707,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2003621037}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.6, y: 0.59, z: -12.4}
+  m_LocalPosition: {x: -3.83, y: 0.59, z: -39.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2921,12 +2921,12 @@ PrefabInstance:
     - target: {fileID: 3824189329239843319, guid: 9888aa8ba64713f8eaadf226edcd5b54,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5494847
+      value: 6.1
       objectReference: {fileID: 0}
     - target: {fileID: 3824189329239843319, guid: 9888aa8ba64713f8eaadf226edcd5b54,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.779985
+      value: 9.6
       objectReference: {fileID: 0}
     - target: {fileID: 3824189329239843319, guid: 9888aa8ba64713f8eaadf226edcd5b54,
         type: 3}
@@ -2997,6 +2997,56 @@ PrefabInstance:
         type: 3}
       propertyPath: rhindleZCoordinate
       value: -28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824189329239843320, guid: 9888aa8ba64713f8eaadf226edcd5b54,
+        type: 3}
+      propertyPath: scene1DragonSpawnLocations.Array.data[0].x
+      value: -23
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824189329239843320, guid: 9888aa8ba64713f8eaadf226edcd5b54,
+        type: 3}
+      propertyPath: scene1DragonSpawnLocations.Array.data[0].y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824189329239843320, guid: 9888aa8ba64713f8eaadf226edcd5b54,
+        type: 3}
+      propertyPath: scene1DragonSpawnLocations.Array.data[0].z
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824189329239843320, guid: 9888aa8ba64713f8eaadf226edcd5b54,
+        type: 3}
+      propertyPath: scene1DragonSpawnLocations.Array.data[1].x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824189329239843320, guid: 9888aa8ba64713f8eaadf226edcd5b54,
+        type: 3}
+      propertyPath: scene1DragonSpawnLocations.Array.data[1].y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824189329239843320, guid: 9888aa8ba64713f8eaadf226edcd5b54,
+        type: 3}
+      propertyPath: scene1DragonSpawnLocations.Array.data[1].z
+      value: -18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824189329239843320, guid: 9888aa8ba64713f8eaadf226edcd5b54,
+        type: 3}
+      propertyPath: scene1DragonSpawnLocations.Array.data[2].x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824189329239843320, guid: 9888aa8ba64713f8eaadf226edcd5b54,
+        type: 3}
+      propertyPath: scene1DragonSpawnLocations.Array.data[2].y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824189329239843320, guid: 9888aa8ba64713f8eaadf226edcd5b54,
+        type: 3}
+      propertyPath: scene1DragonSpawnLocations.Array.data[2].z
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824189329239843320, guid: 9888aa8ba64713f8eaadf226edcd5b54,
+        type: 3}
+      propertyPath: difficulty
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9888aa8ba64713f8eaadf226edcd5b54, type: 3}

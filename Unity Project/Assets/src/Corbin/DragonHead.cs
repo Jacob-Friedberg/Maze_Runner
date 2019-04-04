@@ -10,10 +10,11 @@ using UnityEngine;
 
 public class DragonHead : MonoBehaviour
 {
-  public GameObject dragon;
+  [SerializeField] private GameObject dragon;
+  private GameObject dragonAI;
   private void Start()
   {
-    dragon = GameObject.Find("DragonAI_2");
+    dragonAI = GameObject.Find("DragonAI_2");
   }
   void OnTriggerEnter (Collider col)
   {
@@ -21,7 +22,7 @@ public class DragonHead : MonoBehaviour
     if (col.gameObject.CompareTag("Sword"))
     {
       Debug.Log("Sword Dragon Collision detected");
-      dragon.GetComponent<DragonAI_2>().TakeDamage();
+      dragonAI.GetComponent<DragonAI_2>().TakeDamage(dragon.GetComponent<DragonID>().id);
       StartCoroutine(DragonDamageWait());
     }
   }
