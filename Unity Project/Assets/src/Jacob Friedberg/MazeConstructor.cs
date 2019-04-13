@@ -89,7 +89,7 @@ public class MazeConstructor : MonoBehaviour
             }
         }
     }
-
+/* 
     private void PlaceStartTrigger(TriggerEventHandler callback)
     {
         GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -118,7 +118,7 @@ public class MazeConstructor : MonoBehaviour
         tc.callback = callback;
     }
 
-
+*/
 
     private void FindGoalPosition()
     {
@@ -163,8 +163,8 @@ public class MazeConstructor : MonoBehaviour
 
         DisplayMaze();
 
-        PlaceStartTrigger(startCallback);
-        PlaceGoalTrigger(goalCallback);
+        //PlaceStartTrigger(startCallback);
+        //PlaceGoalTrigger(goalCallback);
     }
 
 

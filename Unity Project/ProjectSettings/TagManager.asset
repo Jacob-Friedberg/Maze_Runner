@@ -14,11 +14,15 @@ TagManager:
   - SwapScene
   - Controller
   - StartWorld
+  - ToMazeEntrance
+  - ToMazeExit
+  - MazeToCastle
+  - MazeToWorld
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  -
   - Water
   - UI
   -
