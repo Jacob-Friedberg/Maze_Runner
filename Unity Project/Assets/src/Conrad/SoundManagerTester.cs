@@ -16,7 +16,9 @@ public class SoundManagerTester : MonoBehaviour
 
   public void Hit()
   {
-    SoundManager.Instance.Play(source, "Hit&Damage1");
+    for(int i = 0; i < 100; i++){
+      SoundManager.Instance.Play(source, "Hit&Damage1");
+    }
   }
 
   public void DecTest()

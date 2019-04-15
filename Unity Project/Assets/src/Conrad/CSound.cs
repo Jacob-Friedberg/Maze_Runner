@@ -14,12 +14,12 @@ public class CSound
     clip = c;
   }
 
-  public CSound Add(AudioClip clip)
+  public virtual CSound Add(AudioClip clip)
   {
     return Add(new CSound(clip));
   }
 
-  public CSound Add(CSound sound)
+  public virtual CSound Add(CSound sound)
   {
     additionalSound = sound;
     return this;
