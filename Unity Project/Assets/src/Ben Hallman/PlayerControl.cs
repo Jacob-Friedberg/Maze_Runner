@@ -65,10 +65,19 @@ public class PlayerControl : MonoBehaviour
             playerTarget.transform.SetParent(targetVRParent.transform);
             playerTarget.transform.position = targetVRParent.transform.position;
         }
+        // Runs the player death test case
         else
         {
-            playerTarget.transform.SetParent(targetDebugParent.transform);
-            playerTarget.transform.position = targetDebugParent.transform.position;
+            // playerTarget.transform.SetParent(targetDebugParent.transform);
+            // playerTarget.transform.position = targetDebugParent.transform.position;
+
+            // Automaticaly moves the debug player towards enimies to test the death sequence
+            Vector3 localPosition = player.transform.position - transform.position;
+            // The normalized direction in local space
+            localPosition = localPosition.normalized;
+            transform.Translate(localPosition.x * Time.deltaTime * speed,
+                                localPosition.y * Time.deltaTime * speed,
+                                localPosition.z * Time.deltaTime * speed);
         }
 
         if (resetDebugPlayer || isVR)
