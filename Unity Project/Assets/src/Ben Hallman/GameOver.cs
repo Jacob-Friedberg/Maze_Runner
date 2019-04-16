@@ -6,37 +6,32 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// The public class GameOver is an example of edited reuse from the Unity website.
 public class GameOver : MonoBehaviour
 {
-    // The audio clip that plays when the player dies.
-    public AudioClip deathClip;
-    // Reference to an image that flashes on the screen when the player dies.
-    public Image deathImage;
+    // A boolean statement representing if the player is dead.
+    private bool isDead;
+    // Timer to count up to restarting the game.
+    private float restartTimer;
+
+    // A static singleton property is used here as having more than one instance of these, might cause some very incorrect behavior.
+    public static AudioHandler Instance { get; private set; }
+
     // The speed the deathImage will fade-out at.
     public float fadeSpeed = 5f;
-    // The colour the damageImage is set to when it flashes.
-    private Color flashColour = new Color(1f, 0f, 0f, 1f);
 
-    // A boolean statement representing if the player is dead.
-    bool isDead;
-    // Timer to count up to restarting the game.
-    float restartTimer;
+    // The audio clip that plays when the player dies.
+    public AudioClip deathClip;
 
-    //Creates a player GameObject.
+    // Creates a player GameObject.
     GameObject player;
-    // Reference to the AudioSource component.
-    AudioSource playerAudio;
     // Reference to the player's movement.
     PlayerControl playerMovement;
 
-    void Update()
+    void Start()
     {
-        // If the player has lost all their health.
-        if (isDead)
-        {
-            // Set the colour of the deathImage to the death colour and fade-out.
-            deathImage.color = Color.Lerp(deathImage.color, Color.black, fadeSpeed * Time.deltaTime);
-        }
+        // Save a reference to the AudioHandler component as the singleton instance.
+        Instance = this;
     }
 
     public bool isPlayerDead()
@@ -50,9 +45,8 @@ public class GameOver : MonoBehaviour
         isDead = true;
         Debug.Log("PLAYER DIED");
 
-        // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
-        playerAudio.clip = deathClip;
-        playerAudio.Play();
+        // Play the player movement sound effect.
+        AudioHandler.Instance.PlayAudio(AudioHandler.Instance.deathClip);
 
         // Turn off the movement script.
         playerMovement.enabled = false;
@@ -60,5 +54,12 @@ public class GameOver : MonoBehaviour
         // Teleports the player to the main menu location.
         SceneManager.LoadScene("world1");
         player.transform.position = new Vector3(-103, 0, -43);
+    }
+
+    // Instance method, this method can be accesed through the singleton instance.
+    public void PlayAudio(AudioClip clip)
+    {
+        audio.clip = clip;
+        audio.Play();
     }
 }
