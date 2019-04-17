@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
     private bool damaged;
 
     // A static singleton property is used here as having more than one instance of these, might cause some very incorrect behavior.
-    public static AudioHandler Instance { get; private set; }
+    public static ImageHandler Instance { get; private set; }
 
     // The amount of health the player starts the game with.
     public int startingHealth = 100;
@@ -22,35 +22,38 @@ public class PlayerHealth : MonoBehaviour
     // The speed the damageImage will fade-out at.
     public float flashSpeed = 5f;
 
-    // The audio clip that plays when the player takes damage.
-    public AudioClip damageClip;
-    // The audio clip that plays when the player's health goes below a defined threshold.
-    public AudioClip heartBeatClip;
     // Reference to an image that flashes on the screen when the player takes damage.
     public Image damageImage;
     // Makes a GameObject called damageOverlay.
     public GameObject damageOverlay;
+    // Adds the SoundManager GameObject.
+    public GameObject SoundManager;
 
     // The managing of colors below demonstrates the Prototype pattern in which new
     // Color objects are created by copying pre-existing, selected Colors of the same type.
     ColorManager colormanager = new ColorManager();
-
-    // Initialize with standard colors
-    colormanager["red"] = new Color(255, 0, 0);
-    colormanager["green"] = new Color(0, 255, 0);
-    colormanager["blue"] = new Color(0, 0, 255);
-    colormanager["black"] = new Color(0, 0, 0);
-    colormanager["white"] = new Color(255, 255, 255);
-
-    // Clones selected colors
-    Color red = colormanager["red"].Clone() as Color;
-    Color black = colormanager["black"].Clone() as Color;
 
     // Reference to the player's movement.
     PlayerControl playerMovement;
 
     void Start()
     {
+        // Initialize with standard colors
+        colormanager["red"] = new Colors(255, 0, 0);
+        colormanager["green"] = new Colors(0, 255, 0);
+        colormanager["blue"] = new Colors(0, 0, 255);
+        colormanager["black"] = new Colors(0, 0, 0);
+        colormanager["white"] = new Colors(255, 255, 255);
+
+        // Clones selected colors
+        Colors red = colormanager["red"].Clone() as Colors;
+        Colors black = colormanager["black"].Clone() as Colors;
+
+        // Adds the player heartbeat sound.
+        AddSoundFromFile("myCoolSound", "folder/mySoundFile");
+        // Adds the player damage sound.
+        AddSoundFromFile("myCoolSound", "folder/mySoundFile");
+
         //Activate Image
         damageOverlay.SetActive(true);
 
@@ -60,7 +63,7 @@ public class PlayerHealth : MonoBehaviour
         // Sets the initial health of the player.
         currentHealth = startingHealth;
 
-        // Save a reference to the AudioHandler component as the singleton instance.
+        // Save a reference to the ImageHandler component as the singleton instance.
         Instance = this;
     }
 
@@ -69,19 +72,21 @@ public class PlayerHealth : MonoBehaviour
         // If the player's current health is equal to or less than a certain value...
         if (currentHealth <= 25)
         {
-            // Play the player movement sound effect.
-            AudioHandler.Instance.PlayAudio(AudioHandler.Instance.heartBeatClip);
+            // Plays the player heartbeat sound effect.
+            AudioSource source = GetComponent<AudioSource>();
+            SoundManager.Instance.Play(source, "myCoolSound");
+
         }
 
         // If the player has just been damaged...
         if (damaged)
         {
-            // Set the color of the damageImage to the correct color.
-            damageImage.color = red;
+            // Sets the color of the damage image.
+            ImageHandler.Instance.ImageColor(ImageHandler.Instance.red);
         }
         else
         {
-            // Transition the colour back to clear.
+            // Transition the color back to clear.
             if (!GetComponent<GameOver>().isPlayerDead())
             {
                 damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
@@ -114,8 +119,9 @@ public class PlayerHealth : MonoBehaviour
         // Reduce the current health by the damage amount.
         currentHealth -= amount;
 
-        // Play the player movement sound effect.
-        AudioHandler.Instance.PlayAudio(AudioHandler.Instance.damageClip);
+        // Plays the player damage sound effect.
+        AudioSource source = GetComponent<AudioSource>();
+        SoundManager.Instance.Play(source, "myCoolSound");
 
         // If the player has lost all their health and the death flag has not been set yet...
         if (currentHealth <= 0)
@@ -126,18 +132,21 @@ public class PlayerHealth : MonoBehaviour
             //Calls the Death() function in the GameOver script.
             GetComponent<GameOver>().Death();
 
-            // Set the colour of the damageImage to the death colour and fade-out.
-            damageImage.color = Color.Lerp(deathImage.color, Color.black, fadeSpeed * Time.deltaTime);
+            // Sets the color of the damage image.
+            ImageHandler.Instance.ImageColor(ImageHandler.Instance.black);
+
+            // Transition the color back to clear.
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+
             // Reset the initial health of the player.
             currentHealth = startingHealth;
         }
     }
 
     // Instance method, this method can be accesed through the singleton instance.
-    public void PlayAudio(AudioClip clip)
+    public void ImageColor(Colors color)
     {
-        audio.clip = clip;
-        audio.Play();
+        damageImage.color = color;
     }
 }
 
@@ -148,14 +157,14 @@ abstract class ColorPrototype
 }
 
 // This class implements an operation for cloning itself
-class Color : ColorPrototype
+class Colors : ColorPrototype
 {
     private int red;
     private int green;
     private int blue;
 
-    // This is a constructor and an example of dynamic binding
-    public virtual Color(int red, int green, int blue)
+    // This is the Colors constructor
+    public Colors(int red, int green, int blue)
     {
         this.red = red;
         this.green = green;

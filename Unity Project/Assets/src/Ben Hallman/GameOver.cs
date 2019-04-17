@@ -14,14 +14,8 @@ public class GameOver : MonoBehaviour
     // Timer to count up to restarting the game.
     private float restartTimer;
 
-    // A static singleton property is used here as having more than one instance of these, might cause some very incorrect behavior.
-    public static AudioHandler Instance { get; private set; }
-
-    // The speed the deathImage will fade-out at.
-    public float fadeSpeed = 5f;
-
-    // The audio clip that plays when the player dies.
-    public AudioClip deathClip;
+    // Adds the SoundManager GameObject.
+    public GameObject SoundManager;
 
     // Creates a player GameObject.
     GameObject player;
@@ -30,8 +24,8 @@ public class GameOver : MonoBehaviour
 
     void Start()
     {
-        // Save a reference to the AudioHandler component as the singleton instance.
-        Instance = this;
+        // Adds the player death sound.
+        AddSoundFromFile("myCoolSound", "folder/mySoundFile");
     }
 
     public bool isPlayerDead()
@@ -45,21 +39,15 @@ public class GameOver : MonoBehaviour
         isDead = true;
         Debug.Log("PLAYER DIED");
 
-        // Play the player movement sound effect.
-        AudioHandler.Instance.PlayAudio(AudioHandler.Instance.deathClip);
-
         // Turn off the movement script.
         playerMovement.enabled = false;
+
+        // Plays the player death sound effect.
+        AudioSource source = GetComponent<AudioSource>();
+        SoundManager.Instance.Play(source, "myCoolSound");
 
         // Teleports the player to the main menu location.
         SceneManager.LoadScene("world1");
         player.transform.position = new Vector3(-103, 0, -43);
-    }
-
-    // Instance method, this method can be accesed through the singleton instance.
-    public void PlayAudio(AudioClip clip)
-    {
-        audio.clip = clip;
-        audio.Play();
     }
 }

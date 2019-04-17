@@ -23,9 +23,6 @@ public class PlayerControl : MonoBehaviour
     private Vector3[] startPosition = new Vector3[2];
     private GameObject[] controller = new GameObject[2];
 
-    // Static singleton property.
-    public static AudioHandler Instance { get; private set; }
-
     // The scale at which the player will move based on input.
     public float moveScale = 1.25f;
     // A boolean representing if the the debug player is reset.
@@ -33,12 +30,12 @@ public class PlayerControl : MonoBehaviour
 
     public SteamVR_Action_Boolean grabWorldAction;
     public SteamVR_Input_Sources[] hand = new SteamVR_Input_Sources[2];
-    // The audio clip that plays when the player moves.
-    public AudioClip moveClip;
     public GameObject playerTarget;
     public GameObject targetVRParent;
     public GameObject debugPlayer;
     public GameObject targetDebugParent;
+    // Adds the SoundManager GameObject.
+    public GameObject SoundManager;
 
     void Start()
     {
@@ -51,8 +48,8 @@ public class PlayerControl : MonoBehaviour
         controller[LEFT] = transform.Find("SteamVRObjects").Find("LeftController").gameObject;
         controller[RIGHT] = transform.Find("SteamVRObjects").Find("RightController").gameObject;
 
-        // Save a reference to the AudioHandler component as the singleton instance.
-        Instance = this;
+        // Adds the player movement sound.
+        AddSoundFromFile("myCoolSound", "folder/mySoundFile");
     }
 
     void Update()
@@ -65,19 +62,22 @@ public class PlayerControl : MonoBehaviour
             playerTarget.transform.SetParent(targetVRParent.transform);
             playerTarget.transform.position = targetVRParent.transform.position;
         }
-        // Runs the player death test case
+        // Runs the player death test case.
         else
         {
             // playerTarget.transform.SetParent(targetDebugParent.transform);
             // playerTarget.transform.position = targetDebugParent.transform.position;
 
-            // Automaticaly moves the debug player towards enimies to test the death sequence
-            Vector3 localPosition = player.transform.position - transform.position;
-            // The normalized direction in local space
+            // Automaticaly moves the debug player towards enimies to test the death sequence.
+            // The bound of success for this test is the player takes damage and dies.
+            // The bound of failer for this is the player does not die.
+            // This test also tests randomized collisions on walls and the test also fails if collisions fail to work.
+            Vector3 localPosition = targetDebugParent.transform.position - transform.position;
+            // The normalized direction in local space.
             localPosition = localPosition.normalized;
-            transform.Translate(localPosition.x * Time.deltaTime * speed,
-                                localPosition.y * Time.deltaTime * speed,
-                                localPosition.z * Time.deltaTime * speed);
+            transform.Translate(localPosition.x * Time.deltaTime * moveScale,
+                                localPosition.y * Time.deltaTime * moveScale,
+                                localPosition.z * Time.deltaTime * moveScale);
         }
 
         if (resetDebugPlayer || isVR)
@@ -119,8 +119,10 @@ public class PlayerControl : MonoBehaviour
             // Transforms the player's position in the world.
             transform.position += (moveScale * offset);
 
-            // Play the player movement sound effect.
-            AudioHandler.Instance.PlayAudio(AudioHandler.Instance.moveClip);
+            // Plays the player movement sound effect.
+            AudioSource source = GetComponent<AudioSource>();
+            SoundManager.Instance.Play(source, "myCoolSound");
+
         }
         else
         {
@@ -140,12 +142,5 @@ public class PlayerControl : MonoBehaviour
             // Stop the player from passing through a collidable object.
             rigidbody.velocity = Vector3.zero;
         }
-    }
-
-    // Instance method, this method can be accesed through the singleton instance.
-    public void PlayAudio(AudioClip clip)
-    {
-        audio.clip = clip;
-        audio.Play();
     }
 }
