@@ -57,7 +57,7 @@ public class hit_controller : MonoBehaviour
         if(col.gameObject.CompareTag("teletest"))
         {
             player.GetComponent<PlayerControl>().Lock();
-            player.transform.position = new Vector3(4.7, 1, -3.4);
+            player.transform.position = new Vector3(4.7f, 1, -3.4f);
         }
 
     }
