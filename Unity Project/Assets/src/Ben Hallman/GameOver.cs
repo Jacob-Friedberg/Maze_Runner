@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 // The public class GameOver is an example of edited reuse from the Unity website.
 public class GameOver : MonoBehaviour
@@ -15,7 +16,7 @@ public class GameOver : MonoBehaviour
     private float restartTimer;
 
     // A static singleton property is used here as having more than one instance of these, might cause some very incorrect behavior.
-    public static AudioHandler Instance { get; private set; }
+    // public static AudioHandler Instance { get; private set; }
 
     // The speed the deathImage will fade-out at.
     public float fadeSpeed = 5f;
@@ -31,7 +32,7 @@ public class GameOver : MonoBehaviour
     void Start()
     {
         // Save a reference to the AudioHandler component as the singleton instance.
-        Instance = this;
+        // Instance = this;
     }
 
     public bool isPlayerDead()
@@ -46,7 +47,7 @@ public class GameOver : MonoBehaviour
         Debug.Log("PLAYER DIED");
 
         // Play the player movement sound effect.
-        AudioHandler.Instance.PlayAudio(AudioHandler.Instance.deathClip);
+        // AudioHandler.Instance.PlayAudio(AudioHandler.Instance.deathClip);
 
         // Turn off the movement script.
         playerMovement.enabled = false;
@@ -59,7 +60,7 @@ public class GameOver : MonoBehaviour
     // Instance method, this method can be accesed through the singleton instance.
     public void PlayAudio(AudioClip clip)
     {
-        audio.clip = clip;
-        audio.Play();
+        GetComponent<AudioSource>().clip = clip;
+        GetComponent<AudioSource>().Play();
     }
 }

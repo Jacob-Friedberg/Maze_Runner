@@ -6,6 +6,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
     private bool damaged;
 
     // A static singleton property is used here as having more than one instance of these, might cause some very incorrect behavior.
-    public static AudioHandler Instance { get; private set; }
+    // public static AudioHandler Instance { get; private set; }
 
     // The amount of health the player starts the game with.
     public int startingHealth = 100;
@@ -35,22 +36,22 @@ public class PlayerHealth : MonoBehaviour
     // Color objects are created by copying pre-existing, selected Colors of the same type.
     ColorManager colormanager = new ColorManager();
 
-    // Initialize with standard colors
-    colormanager["red"] = new Color(255, 0, 0);
-    colormanager["green"] = new Color(0, 255, 0);
-    colormanager["blue"] = new Color(0, 0, 255);
-    colormanager["black"] = new Color(0, 0, 0);
-    colormanager["white"] = new Color(255, 255, 255);
-
-    // Clones selected colors
-    Color red = colormanager["red"].Clone() as Color;
-    Color black = colormanager["black"].Clone() as Color;
-
     // Reference to the player's movement.
     PlayerControl playerMovement;
 
     void Start()
     {
+        // Initialize with standard colors
+        colormanager["red"] = new Colors(255, 0, 0);
+        colormanager["green"] = new Colors(0, 255, 0);
+        colormanager["blue"] = new Colors(0, 0, 255);
+        colormanager["black"] = new Colors(0, 0, 0);
+        colormanager["white"] = new Colors(255, 255, 255);
+
+        // Clones selected colors
+        Colors red = colormanager["red"].Clone() as Colors;
+        Colors black = colormanager["black"].Clone() as Colors;
+
         //Activate Image
         damageOverlay.SetActive(true);
 
@@ -61,7 +62,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = startingHealth;
 
         // Save a reference to the AudioHandler component as the singleton instance.
-        Instance = this;
+        // Instance = this;
     }
 
     void Update()
@@ -70,14 +71,14 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 25)
         {
             // Play the player movement sound effect.
-            AudioHandler.Instance.PlayAudio(AudioHandler.Instance.heartBeatClip);
+            // AudioHandler.Instance.PlayAudio(AudioHandler.Instance.heartBeatClip);
         }
 
         // If the player has just been damaged...
         if (damaged)
         {
             // Set the color of the damageImage to the correct color.
-            damageImage.color = red;
+            damageImage.color = Color.red;
         }
         else
         {
@@ -115,7 +116,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= amount;
 
         // Play the player movement sound effect.
-        AudioHandler.Instance.PlayAudio(AudioHandler.Instance.damageClip);
+        // AudioHandler.Instance.PlayAudio(AudioHandler.Instance.damageClip);
 
         // If the player has lost all their health and the death flag has not been set yet...
         if (currentHealth <= 0)
@@ -127,7 +128,7 @@ public class PlayerHealth : MonoBehaviour
             GetComponent<GameOver>().Death();
 
             // Set the colour of the damageImage to the death colour and fade-out.
-            damageImage.color = Color.Lerp(deathImage.color, Color.black, fadeSpeed * Time.deltaTime);
+            damageImage.color = Color.Lerp(damageImage.color, Color.black, flashSpeed * Time.deltaTime);
             // Reset the initial health of the player.
             currentHealth = startingHealth;
         }
@@ -136,8 +137,8 @@ public class PlayerHealth : MonoBehaviour
     // Instance method, this method can be accesed through the singleton instance.
     public void PlayAudio(AudioClip clip)
     {
-        audio.clip = clip;
-        audio.Play();
+        GetComponent<AudioSource>().clip = clip;
+        GetComponent<AudioSource>().Play();
     }
 }
 
@@ -148,14 +149,14 @@ abstract class ColorPrototype
 }
 
 // This class implements an operation for cloning itself
-class Color : ColorPrototype
+class Colors : ColorPrototype
 {
     private int red;
     private int green;
     private int blue;
 
     // This is a constructor and an example of dynamic binding
-    public virtual Color(int red, int green, int blue)
+    public Colors(int red, int green, int blue)
     {
         this.red = red;
         this.green = green;
@@ -165,8 +166,6 @@ class Color : ColorPrototype
     // Creates a shallow copy
     public override ColorPrototype Clone()
     {
-        Debug.Log("CLONING COLOR RGB: {0,3},{1,3},{2,3}", red, green, blue);
-
         return this.MemberwiseClone() as ColorPrototype;
     }
 }

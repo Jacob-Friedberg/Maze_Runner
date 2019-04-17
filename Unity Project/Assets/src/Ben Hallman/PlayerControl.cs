@@ -24,7 +24,7 @@ public class PlayerControl : MonoBehaviour
     private GameObject[] controller = new GameObject[2];
 
     // Static singleton property.
-    public static AudioHandler Instance { get; private set; }
+    // public static AudioHandler Instance { get; private set; }
 
     // The scale at which the player will move based on input.
     public float moveScale = 1.25f;
@@ -52,7 +52,7 @@ public class PlayerControl : MonoBehaviour
         controller[RIGHT] = transform.Find("SteamVRObjects").Find("RightController").gameObject;
 
         // Save a reference to the AudioHandler component as the singleton instance.
-        Instance = this;
+        // Instance = this;
     }
 
     void Update()
@@ -72,12 +72,12 @@ public class PlayerControl : MonoBehaviour
             // playerTarget.transform.position = targetDebugParent.transform.position;
 
             // Automaticaly moves the debug player towards enimies to test the death sequence
-            Vector3 localPosition = player.transform.position - transform.position;
+            Vector3 localPosition = targetDebugParent.transform.position - transform.position;
             // The normalized direction in local space
             localPosition = localPosition.normalized;
-            transform.Translate(localPosition.x * Time.deltaTime * speed,
-                                localPosition.y * Time.deltaTime * speed,
-                                localPosition.z * Time.deltaTime * speed);
+            transform.Translate(localPosition.x * Time.deltaTime * moveScale,
+                                localPosition.y * Time.deltaTime * moveScale,
+                                localPosition.z * Time.deltaTime * moveScale);
         }
 
         if (resetDebugPlayer || isVR)
@@ -120,7 +120,7 @@ public class PlayerControl : MonoBehaviour
             transform.position += (moveScale * offset);
 
             // Play the player movement sound effect.
-            AudioHandler.Instance.PlayAudio(AudioHandler.Instance.moveClip);
+            // AudioHandler.Instance.PlayAudio(AudioHandler.Instance.moveClip);
         }
         else
         {
@@ -129,7 +129,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collider coll)
+    void OnCollisionEnter(Collision coll)
     {
         // if(gameObject.CompareTag("generated") || gameObject.CompareTag("collidable"))
 
@@ -138,14 +138,14 @@ public class PlayerControl : MonoBehaviour
             coll.gameObject.name == "collidable")
         {
             // Stop the player from passing through a collidable object.
-            rigidbody.velocity = Vector3.zero;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 
     // Instance method, this method can be accesed through the singleton instance.
     public void PlayAudio(AudioClip clip)
     {
-        audio.clip = clip;
-        audio.Play();
+        GetComponent<AudioSource>().clip = clip;
+        GetComponent<AudioSource>().Play();
     }
 }
