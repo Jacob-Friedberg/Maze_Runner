@@ -18,6 +18,7 @@ TagManager:
   - ToMazeExit
   - MazeToCastle
   - MazeToWorld
+  - teletest
   layers:
   - Default
   - TransparentFX
