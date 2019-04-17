@@ -53,5 +53,12 @@ public class hit_controller : MonoBehaviour
             SceneManager.LoadScene("world1");
         }
 
+        // teleportation test instance
+        if(col.gameObject.CompareTag("teletest"))
+        {
+            player.GetComponent<PlayerControl>().Lock();
+            player.transform.position = new Vector3(4.7, 1, -3.4);
+        }
+
     }
 }
