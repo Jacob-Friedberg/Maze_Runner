@@ -58,6 +58,7 @@ public class hit_controller : MonoBehaviour
         {
             player.GetComponent<PlayerControl>().Lock();
             player.transform.position = new Vector3(4.7f, 1, -3.4f);
+            player.GetComponent<PlayerControl>().moveScale += 0.3f;
         }
 
     }
