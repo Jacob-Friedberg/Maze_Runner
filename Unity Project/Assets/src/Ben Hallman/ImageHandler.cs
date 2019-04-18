@@ -1,11 +1,15 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class ImageHandler : MonoBehaviour
 {
     // Reference to an image that flashes on the screen when the player takes damage.
     public Image damageImage;
+
+    // The speed the damageImage will fade-out at.
+    public float flashSpeed = 5f;
 
     // A static singleton property is used here as having more than one instance of these, might cause some very incorrect behavior.
     public static ImageHandler Instance { get; private set; }
@@ -32,9 +36,13 @@ public class ImageHandler : MonoBehaviour
     }
 
     // Instance method, this method can be accesed through the singleton instance.
-    public void ImageColor(Colors color)
+    public void ImageColor(Color color)
     {
-        damageImage.color = color;
+        // Set the damageImage color
+        damageImage.color = color.Clone() as Colors;
+
+        // Transition the color back to clear.
+        damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
     }
 }
 
@@ -62,8 +70,6 @@ class Colors : ColorPrototype
     // Creates a shallow copy
     public override ColorPrototype Clone()
     {
-        Debug.Log("CLONING COLOR RGB: {0,3},{1,3},{2,3}", red, green, blue);
-
         return this.MemberwiseClone() as ColorPrototype;
     }
 }

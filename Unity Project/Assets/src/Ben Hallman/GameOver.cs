@@ -4,7 +4,7 @@
  * is used when the player's health reaches zero. */
 
 using UnityEngine;
-using UnityEngine.UI;
+// using UnityEngine.UI;
 
 // The public class GameOver is an example of edited reuse from the Unity website.
 public class GameOver : MonoBehaviour

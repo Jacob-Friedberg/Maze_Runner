@@ -4,8 +4,8 @@
  * damage overlay, and calls the Death() function when the player dies.*/
 
 using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+// using UnityEngine.UI;
+// using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -16,8 +16,6 @@ public class PlayerHealth : MonoBehaviour
     public int startingHealth = 100;
     // The player's current health.
     public int currentHealth;
-    // The speed the damageImage will fade-out at.
-    public float flashSpeed = 5f;
 
     // Makes a GameObject called damageOverlay.
     public GameObject damageOverlay;
@@ -26,13 +24,14 @@ public class PlayerHealth : MonoBehaviour
 
     // Reference to the player's movement.
     PlayerControl playerMovement;
+    AudioSource source = GetComponent<AudioSource>();
 
     void Start()
     {
         // Adds the player heartbeat sound.
-        AddSoundFromFile("myCoolSound", "folder/mySoundFile");
+        AddSoundFromFile("heartbeat", "Assets/Attack Jump & Hit Damage Human Sounds/Jump & Attack 7.wav");
         // Adds the player damage sound.
-        AddSoundFromFile("myCoolSound", "folder/mySoundFile");
+        AddSoundFromFile("damage", "Assets/Attack Jump & Hit Damage Human Sounds/Hit & Damage 1.wav");
 
         //Activate Image
         damageOverlay.SetActive(true);
@@ -50,8 +49,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 25)
         {
             // Plays the player heartbeat sound effect.
-            AudioSource source = GetComponent<AudioSource>();
-            SoundManager.Instance.Play(source, "myCoolSound");
+            SoundManager.Instance.Play(source, "heartbeat");
 
         }
 
@@ -60,14 +58,6 @@ public class PlayerHealth : MonoBehaviour
         {
             // Sets the color of the damage image.
             ImageHandler.Instance.ImageColor(ImageHandler.Instance.red);
-        }
-        else
-        {
-            // Transition the color back to clear.
-            if (!GetComponent<GameOver>().isPlayerDead())
-            {
-                damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
-            }
         }
 
         // Reset the damaged flag.
@@ -98,7 +88,7 @@ public class PlayerHealth : MonoBehaviour
 
         // Plays the player damage sound effect.
         AudioSource source = GetComponent<AudioSource>();
-        SoundManager.Instance.Play(source, "myCoolSound");
+        SoundManager.Instance.Play(source, "damage");
 
         // If the player has lost all their health and the death flag has not been set yet...
         if (currentHealth <= 0)
@@ -110,10 +100,7 @@ public class PlayerHealth : MonoBehaviour
             GetComponent<GameOver>().Death();
 
             // Sets the color of the damage image.
-            ImageHandler.Instance.ImageColor(ImageHandler.Instance.black);
-
-            // Transition the color back to clear.
-            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+            ImageHandler.Instance.ImageColor(ImageHandler.Instance.Color.black);
 
             // Reset the initial health of the player.
             currentHealth = startingHealth;

@@ -5,8 +5,8 @@
 
 using Valve.VR;
 using UnityEngine;
-using UnityEngine.XR;
-using System.Collections;
+// using UnityEngine.XR;
+// using System.Collections;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -37,6 +37,8 @@ public class PlayerControl : MonoBehaviour
     // Adds the SoundManager GameObject.
     public GameObject SoundManager;
 
+    AudioSource source = GetComponent<AudioSource>();
+
     void Start()
     {
         // Debug.Log("XR Device Present: " + XRDevice.isPresent);
@@ -49,7 +51,7 @@ public class PlayerControl : MonoBehaviour
         controller[RIGHT] = transform.Find("SteamVRObjects").Find("RightController").gameObject;
 
         // Adds the player movement sound.
-        AddSoundFromFile("myCoolSound", "folder/mySoundFile");
+        AddSoundFromFile("movement", "Assets/Attack Jump & Hit Damage Human Sounds/Jump & Attack 9.wav");
     }
 
     void Update()
@@ -120,8 +122,7 @@ public class PlayerControl : MonoBehaviour
             transform.position += (moveScale * offset);
 
             // Plays the player movement sound effect.
-            AudioSource source = GetComponent<AudioSource>();
-            SoundManager.Instance.Play(source, "myCoolSound");
+            SoundManager.Instance.Play(source, "movement");
 
         }
         else
@@ -140,7 +141,7 @@ public class PlayerControl : MonoBehaviour
             coll.gameObject.name == "collidable")
         {
             // Stop the player from passing through a collidable object.
-            rigidbody.velocity = Vector3.zero;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 }
