@@ -29,6 +29,7 @@ public class RhindleController : BaseDragon
         dragonHeadObject = GameObject.Find("RhindleHead");
         playerTarget = GameObject.FindGameObjectWithTag("Target");
         dragonHeadObject.GetComponent<DragonHead>().Init(this);
+        audioSourceComponent = dragonObject.GetComponent<AudioSource>();
     }
 
     // TakeDamage() overrides the IDragon method implemented in BaseDragon

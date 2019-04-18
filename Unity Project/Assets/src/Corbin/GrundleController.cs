@@ -29,6 +29,7 @@ public class GrundleController : BaseDragon
         dragonHeadObject = GameObject.Find("GrundleHead");
         playerTarget = GameObject.FindGameObjectWithTag("Target");
         dragonHeadObject.GetComponent<DragonHead>().Init(this);
+        audioSourceComponent = dragonObject.GetComponent<AudioSource>();
     }
 
     // TakeDamage() overrides the IDragon method implemented in BaseDragon

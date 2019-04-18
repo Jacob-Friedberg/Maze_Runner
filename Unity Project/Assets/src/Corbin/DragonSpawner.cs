@@ -15,6 +15,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+
 // This class implements the "Creator" of the factory pattern.
 public class DragonSpawner : MonoBehaviour
 {
@@ -79,6 +81,7 @@ public class DragonSpawner : MonoBehaviour
         }
         foreach (IDragon item in dragons)
         {
+            item.addDragonSounds();
             item.spawn(sceneID);
         }
         foreach (IDragon item in dragons)

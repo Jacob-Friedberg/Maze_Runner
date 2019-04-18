@@ -22,8 +22,10 @@ public abstract class BaseDragon : MonoBehaviour, IDragon
     protected NavMeshAgent agent;
     protected GameObject playerTarget;
     protected GameObject dragonHeadObject;
+    protected AudioSource audioSourceComponent;
+    static private bool areSoundsAdded = false;
 
-
+    
     //          Method Definitions
 
     // IDragon Method Implementations
@@ -33,8 +35,10 @@ public abstract class BaseDragon : MonoBehaviour, IDragon
         WaitForSecondsRealtime wait = new WaitForSecondsRealtime(0.5f);
         while (health > 0)
         {
+            StartCoroutine(ambientDragonSounds());
             yield return move();
         }
+        SoundManager.Instance.Play(audioSourceComponent, "mob1die.wav");
         dragonObject.GetComponent<Animator>().Play("Dead_G", 0, 0f);
         yield return despawnDelay();
         dragonObject.SetActive(false);
@@ -46,11 +50,22 @@ public abstract class BaseDragon : MonoBehaviour, IDragon
         yield break;
     }
     public virtual void spawn(int SceneID){}
+    public void addDragonSounds(){
+        if(areSoundsAdded == false){
+            SoundManager.Instance.AddSoundFromFile("mob1.wav", "Monster SFX - 111518/monster/highlevel/mob1");
+            SoundManager.Instance.AddSoundFromFile("mob1atk.wav", "Monster SFX - 111518/monster/highlevel/mob1atk");
+            SoundManager.Instance.AddSoundFromFile("mob1die.wav", "Monster SFX - 111518/monster/highlevel/mob1die");
+            areSoundsAdded = true;
+        }
+        
+    }
 
     // Non-IDragon methods
 
+
     // Causes a dragon to start random attack animation.
     public void attack(){
+        SoundManager.Instance.Play(audioSourceComponent, "mob1atk.wav");
         switch ((int)Random.Range(0.0f, 2.99f))
         {
             case 0:
@@ -101,6 +116,11 @@ public abstract class BaseDragon : MonoBehaviour, IDragon
     // before attack() is called again.
     public IEnumerator finishAttackAnimationDelay(){
         yield return new WaitForSecondsRealtime(1);
+    }
+    public IEnumerator ambientDragonSounds(){
+
+        yield return new WaitForSecondsRealtime(Random.Range(10.0f, 20.0f));
+        SoundManager.Instance.Play(audioSourceComponent, "mob1.wav");
     }
        
 }

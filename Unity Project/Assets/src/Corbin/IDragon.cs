@@ -11,4 +11,5 @@ public interface IDragon
     IEnumerator takeDamage();
     void spawn(int SceneID);
     IEnumerator behave();
+    void addDragonSounds();
 }
