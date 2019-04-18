@@ -1,18 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class pattern1 : MonoBehaviour
+// create a Singleton class
+class Singleton
 {
-    // Start is called before the first frame update
-    void Start()
+    private static Singleton _instance;
+
+    // protected constructor
+    protected Singleton()
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public static Singleton Instance()
     {
-        
+        // if there is no instance of a singleton then create one
+        if(_instance == null)
+        {
+            _instance = new Singleton();
+        }
+
+        // return the single instance of the Singleton
+        return _instance;
     }
 }
