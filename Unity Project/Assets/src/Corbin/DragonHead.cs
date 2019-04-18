@@ -1,8 +1,9 @@
 ﻿/* DragonHead.cs
-Corbin and Conrad
-This script is responsible for triggering the TakeDamage function
-when the collider sphere in the dragon's head registers a collision
-with the sword. */
+Corbin
+This script is responsible for calling the TakeDamage() method
+of an IDragon instance when the sphere collider in the dragon's head 
+registers a collision with the sword by having a reference to an 
+instance of a IDragon interface that has an instance of this class in it.*/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -10,26 +11,17 @@ using UnityEngine;
 
 public class DragonHead : MonoBehaviour
 {
-  [SerializeField] private GameObject dragon;
-  private GameObject dragonAI;
-  private void Start()
-  {
-    dragonAI = GameObject.Find("DragonAI_2");
-  }
-  void OnTriggerEnter (Collider col)
-  {
-    Debug.Log("OnTriggerEnter() called");
-    if (col.gameObject.CompareTag("Sword"))
-    {
-      Debug.Log("Sword Dragon Collision detected");
-      dragonAI.GetComponent<DragonAI_2>().TakeDamage(dragon.GetComponent<DragonID>().id);
-      StartCoroutine(DragonDamageWait());
-    }
-  }
+    
+    private IDragon controller;
 
-  // This function waits for one second after the dragon takes
-  // damage so player cannot insta-kill dragon
-  private IEnumerator DragonDamageWait(){
-    yield return new WaitForSecondsRealtime(1);
-  }
+    // Assign an IDragon instance to a DragonHead instance
+    public void Init(IDragon dragon){
+        controller = dragon;
+    }
+    // Tell IDragon instance to take damage
+    public void OnCollisionEnter(Collision other) {
+        if(other.gameObject.CompareTag("Sword") == true){
+            StartCoroutine(controller.takeDamage());
+        }
+    }
 }

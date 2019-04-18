@@ -1,0 +1,139 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4295351387554900138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 5159584635314414495, guid: a6f2eb6aafa0b9f338944edbd41778fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4295351387554900132}
+  - component: {fileID: 4295351387554900128}
+  - component: {fileID: 4295351387554900129}
+  - component: {fileID: 4295351387554900134}
+  - component: {fileID: 4295351387554900135}
+  - component: {fileID: 4295351387554900133}
+  m_Layer: 0
+  m_Name: DragonSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4295351387554900132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 5159584635314414481, guid: a6f2eb6aafa0b9f338944edbd41778fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4295351387554900138}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 45.8, y: 1.5, z: 28.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4295351387554900128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 5159584635314414480, guid: a6f2eb6aafa0b9f338944edbd41778fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4295351387554900138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd60bfee0a1af94b180237b74334e4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surface: {fileID: 4295351387554900133}
+  _sceneID: 0
+  _difficulty: 2
+--- !u!114 &4295351387554900129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 5159584635314414484, guid: a6f2eb6aafa0b9f338944edbd41778fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4295351387554900138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97210f47539e877f285db197f467f247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragonPrefab: {fileID: 508632931, guid: 176fb99a35a40963784ba9a12df8add5, type: 3}
+  grundleSpawnLocations:
+  - {x: 5.25, y: 1.5, z: -6.7}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+--- !u!114 &4295351387554900134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 5159584635314414483, guid: a6f2eb6aafa0b9f338944edbd41778fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4295351387554900138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e4b30c3839a933a1a57d456cfaff376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragonPrefab: {fileID: 1642098456, guid: 3cf86792349abaf07ac49a16e62b3264, type: 3}
+  yorgleSpawnLocations:
+  - {x: 28.7, y: 1.5, z: -6.7}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+--- !u!114 &4295351387554900135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 5159584635314414482, guid: a6f2eb6aafa0b9f338944edbd41778fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4295351387554900138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961c8b08a01a9b0ba95c9a71ee45b381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragonPrefab: {fileID: 1185782668374324168, guid: 606593b8bf32fdf9eaa390e52a175974,
+    type: 3}
+  rhindleSpawnLocations:
+  - {x: 45.8, y: 1.5, z: 28.6}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+--- !u!114 &4295351387554900133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4295351387554900138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df27b9289d1e8c4fb82e0df4f4673ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -1372625422
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.6666667
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 0}
