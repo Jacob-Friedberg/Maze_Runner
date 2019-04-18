@@ -14,11 +14,16 @@ TagManager:
   - SwapScene
   - Controller
   - StartWorld
+  - ToMazeEntrance
+  - ToMazeExit
+  - MazeToCastle
+  - MazeToWorld
+  - teletest
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  -
   - Water
   - UI
   -

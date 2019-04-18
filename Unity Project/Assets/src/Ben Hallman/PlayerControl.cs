@@ -132,7 +132,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collider coll)
+    void OnCollisionEnter(Collision coll)
     {
         // if(gameObject.CompareTag("generated") || gameObject.CompareTag("collidable"))
 
