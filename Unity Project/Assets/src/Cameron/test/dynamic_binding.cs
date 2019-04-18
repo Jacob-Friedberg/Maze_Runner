@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Debug;
 
-public class dynamic_binding : MonoBehaviour
+public class Cubes
 {
-    // Start is called before the first frame update
-    void Start()
+    virtual public void complain()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("I am here to complain about requirements");
     }
 }
+
+
+//    virtual public void changeColor(Color newColor)
+//    {
+//        Renderer[] renderers = this.GetComponentsInChildren<Renderer>();
+//            for (int rendererIndex = 0; rendererIndex < renderers.Length; rendererIndex++)
+//            {
+//                renderers[rendererIndex].material.color = newColor;
+//            }
+//    }

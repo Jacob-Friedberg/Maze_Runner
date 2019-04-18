@@ -1,18 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Debug;
 
-public class static_binding : MonoBehaviour
+public class OtherCube : Cubes
 {
-    // Start is called before the first frame update
-    void Start()
+    void complain()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("I mean its not that bad");
     }
 }
