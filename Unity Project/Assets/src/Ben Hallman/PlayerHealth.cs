@@ -4,8 +4,8 @@
  * damage overlay, and calls the Death() function when the player dies.*/
 
 using UnityEngine;
-// using UnityEngine.UI;
-// using System.Collections;
+using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -19,25 +19,24 @@ public class PlayerHealth : MonoBehaviour
 
     // Makes a GameObject called damageOverlay.
     public GameObject damageOverlay;
-    // Adds the SoundManager GameObject.
-    public GameObject SoundManager;
 
     // Reference to the player's movement.
     PlayerControl playerMovement;
-    AudioSource source = GetComponent<AudioSource>();
+    AudioSource source;
 
     void Start()
     {
         // Adds the player heartbeat sound.
-        AddSoundFromFile("heartbeat", "Assets/Attack Jump & Hit Damage Human Sounds/Jump & Attack 7.wav");
+        SoundManager.Instance.AddSoundFromFile("heartbeat", "Attack Jump & Hit Damage Human Sounds/Jump & Attack 7");
         // Adds the player damage sound.
-        AddSoundFromFile("damage", "Assets/Attack Jump & Hit Damage Human Sounds/Hit & Damage 1.wav");
+        SoundManager.Instance.AddSoundFromFile("damage", "Attack Jump & Hit Damage Human Sounds/Hit & Damage 1");
 
         //Activate Image
         damageOverlay.SetActive(true);
 
         // Sets up the playerMovement reference.
         playerMovement = GetComponent<PlayerControl>();
+        source = GetComponent<AudioSource>();
 
         // Sets the initial health of the player.
         currentHealth = startingHealth;

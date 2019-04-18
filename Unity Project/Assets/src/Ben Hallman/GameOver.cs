@@ -4,7 +4,7 @@
  * is used when the player's health reaches zero. */
 
 using UnityEngine;
-// using UnityEngine.UI;
+using UnityEngine.UI;
 
 // The public class GameOver is an example of edited reuse from the Unity website.
 public class GameOver : MonoBehaviour
@@ -14,18 +14,16 @@ public class GameOver : MonoBehaviour
     // Timer to count up to restarting the game.
     private float restartTimer;
 
-    // Adds the SoundManager GameObject.
-    public GameObject SoundManager;
-
     // Creates a player GameObject.
     GameObject player;
     // Reference to the player's movement.
     PlayerControl playerMovement;
+    AudioSource source;
 
     void Start()
     {
         // Adds the player death sound.
-        AddSoundFromFile("myCoolSound", "folder/mySoundFile");
+        SoundManager.Instance.AddSoundFromFile("death", "Attack Jump & Hit Damage Human Sounds/Hit & Damage 1");
     }
 
     public bool isPlayerDead()
@@ -43,7 +41,7 @@ public class GameOver : MonoBehaviour
         playerMovement.enabled = false;
 
         // Plays the player death sound effect.
-        AudioSource source = GetComponent<AudioSource>();
+        source = GetComponent<AudioSource>();
         SoundManager.Instance.Play(source, "myCoolSound");
 
         // Teleports the player to the main menu location.

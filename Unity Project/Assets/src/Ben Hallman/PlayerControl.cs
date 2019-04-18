@@ -5,8 +5,8 @@
 
 using Valve.VR;
 using UnityEngine;
-// using UnityEngine.XR;
-// using System.Collections;
+using UnityEngine.XR;
+using System.Collections;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -34,10 +34,8 @@ public class PlayerControl : MonoBehaviour
     public GameObject targetVRParent;
     public GameObject debugPlayer;
     public GameObject targetDebugParent;
-    // Adds the SoundManager GameObject.
-    public GameObject SoundManager;
 
-    AudioSource source = GetComponent<AudioSource>();
+    AudioSource source;
 
     void Start()
     {
@@ -47,11 +45,13 @@ public class PlayerControl : MonoBehaviour
         // Debug.Log("XR Device Active: " + XRSettings.isDeviceActive);
         // Debug.Log("XR Enabled: " + XRSettings.enabled);
 
+        source = GetComponent<AudioSource>();
+
         controller[LEFT] = transform.Find("SteamVRObjects").Find("LeftController").gameObject;
         controller[RIGHT] = transform.Find("SteamVRObjects").Find("RightController").gameObject;
 
         // Adds the player movement sound.
-        AddSoundFromFile("movement", "Assets/Attack Jump & Hit Damage Human Sounds/Jump & Attack 9.wav");
+        SoundManager.Instance.AddSoundFromFile("movement", "Attack Jump & Hit Damage Human Sounds/Jump & Attack 9");
     }
 
     void Update()
