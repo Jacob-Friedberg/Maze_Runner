@@ -17,11 +17,9 @@ public class PlayerHealth : MonoBehaviour
     // The player's current health.
     public int currentHealth;
 
-    // Makes a GameObject called damageOverlay.
-    public GameObject damageOverlay;
-
     // Reference to the player's movement.
     PlayerControl playerMovement;
+    // Reference to the AudioSource source.
     AudioSource source;
 
     void Start()
@@ -30,9 +28,6 @@ public class PlayerHealth : MonoBehaviour
         SoundManager.Instance.AddSoundFromFile("heartbeat", "Attack Jump & Hit Damage Human Sounds/Jump & Attack 7");
         // Adds the player damage sound.
         SoundManager.Instance.AddSoundFromFile("damage", "Attack Jump & Hit Damage Human Sounds/Hit & Damage 1");
-
-        //Activate Image
-        damageOverlay.SetActive(true);
 
         // Sets up the playerMovement reference.
         playerMovement = GetComponent<PlayerControl>();
@@ -56,8 +51,8 @@ public class PlayerHealth : MonoBehaviour
         if (damaged)
         {
             // Sets the color of the damage image.
-            // ImageHandler.Instance.ImageColor(ImageHandler.Instance.red);
-            GetComponent<ImageHandler>().ImageColor(Color.red);
+            // GetComponent<ImageHandler>().ImageColor(Color.red);
+            ImageHandler.Instance.ImageColor(Color.red);
         }
 
         // Reset the damaged flag.
@@ -87,7 +82,6 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= amount;
 
         // Plays the player damage sound effect.
-        AudioSource source = GetComponent<AudioSource>();
         SoundManager.Instance.Play(source, "damage");
 
         // If the player has lost all their health and the death flag has not been set yet...
@@ -96,12 +90,12 @@ public class PlayerHealth : MonoBehaviour
             // The player dies.
             Debug.Log("INITIALIZE DEATH");
 
+            // Sets the color of the damage image.
+            // GetComponent<ImageHandler>().ImageColor(Color.black);
+            ImageHandler.Instance.ImageColor(Color.black);
+
             //Calls the Death() function in the GameOver script.
             GetComponent<GameOver>().Death();
-
-            // Sets the color of the damage image.
-            // ImageHandler.Instance.ImageColor(ImageHandler.Instance.red);
-            GetComponent<ImageHandler>().ImageColor(Color.black);
 
             // Reset the initial health of the player.
             currentHealth = startingHealth;

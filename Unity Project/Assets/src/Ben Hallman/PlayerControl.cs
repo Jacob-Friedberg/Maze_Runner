@@ -31,11 +31,13 @@ public class PlayerControl : MonoBehaviour
 
     public SteamVR_Action_Boolean grabWorldAction;
     public SteamVR_Input_Sources[] hand = new SteamVR_Input_Sources[2];
+
     public GameObject playerTarget;
     public GameObject targetVRParent;
     public GameObject debugPlayer;
     public GameObject targetDebugParent;
 
+    // Reference to the AudioSource source.
     AudioSource source;
 
     public void Lock()
@@ -49,7 +51,7 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
-        // Ussage of static and dynamic binding.
+        // Creates and sets the two HTC Vive controllers.
         Controller controllerLeft = new Left();
         Controller controllerRight = new Right();
         left = controllerLeft.GetControllerID();
@@ -138,6 +140,7 @@ public class PlayerControl : MonoBehaviour
                 // Plays the player movement sound effect.
                 SoundManager.Instance.Play(source, "movement");
 
+                // Sets the movement offset.
                 Vector3 offset = new Vector3(startPosition[handType].x - controller[handType].transform.position.x,
                               0, startPosition[handType].z - controller[handType].transform.position.z);
                 transform.position += (moveScale * offset);
@@ -148,18 +151,18 @@ public class PlayerControl : MonoBehaviour
                 isDragging[handType] = false;
             }
         }
+    }
 
-        void OnCollisionEnter(Collision coll)
+    void OnCollisionEnter(Collision collision)
+    {
+        // if(gameObject.CompareTag("generated") || gameObject.CompareTag("collidable"))
+
+        // If the player runs into a colliadable game object...
+        if (collision.gameObject.name == "genderated" ||
+            collision.gameObject.name == "collidable")
         {
-            // if(gameObject.CompareTag("generated") || gameObject.CompareTag("collidable"))
-
-            // If the player runs into a colliadable game object...
-            if (coll.gameObject.name == "genderated" ||
-                coll.gameObject.name == "collidable")
-            {
-                // Stop the player from passing through a collidable object.
-                GetComponent<Rigidbody>().velocity = Vector3.zero;
-            }
+            // Stop the player from passing through a collidable object.
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 }

@@ -16,9 +16,11 @@ public class GameOver : MonoBehaviour
     private float restartTimer;
 
     // Creates a player GameObject.
-    GameObject player;
+    public GameObject player;
+
     // Reference to the player's movement.
     PlayerControl playerMovement;
+    // Reference to the AudioSource source.
     AudioSource source;
 
     void Start()
