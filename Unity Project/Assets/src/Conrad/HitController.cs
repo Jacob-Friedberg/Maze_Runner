@@ -23,7 +23,7 @@ public class HitController : MonoBehaviour
            player.GetComponent<PlayerControl>().Lock();
             player.transform.position = new Vector3(3.75f, 0.5f, 3.75f);
             SceneManager.LoadScene("Proc_gen");
-            player.transform.position = new Vector3(3.75f, 0.5f, 3.75f);
+            // player.transform.position = new Vector3(3.75f, 0.5f, 3.75f);
 
         }
 

@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity._maze_runner.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\frie2142\\Documents\\GitHub\\Maze_Runner\\Unity Project\\actions.json",
+      "action_manifest_path": "C:\\Users\\mear8979\\Documents\\GitHub\\Maze_Runner\\Unity Project\\actions.json",
       "strings": {
         "en_us": {
           "name": "_Maze_Runner [Testing]"
