@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class MazeConstructor : MonoBehaviour
 {
+    //Fields
+    [SerializeField] private Material mazeMat1;
+    [SerializeField] private Material mazeMat2;
 
+    //public variables
     public bool showDebug;
+    
+    //private variables
     private MazeDataGenerator dataGenerator;
     private MazeMeshGenerator meshGenerator;
 
-    [SerializeField] private Material mazeMat1;
-    [SerializeField] private Material mazeMat2;
-    [SerializeField] private Material startMat;
-    [SerializeField] private Material treasureMat;
-
+    //Getters and setters.
     public int[,] data
     {
         get; private set;
@@ -45,8 +47,6 @@ public class MazeConstructor : MonoBehaviour
     {
         get; private set;
     }
-
-
 
     void Awake()
     {
@@ -87,7 +87,8 @@ public class MazeConstructor : MonoBehaviour
         DisplayMaze();
     }
 
-      private void OnGUI()
+    //Debug display of Maze
+    private void OnGUI()
     {
         if (!showDebug)
         {
@@ -100,7 +101,7 @@ public class MazeConstructor : MonoBehaviour
         int colMax = maze.GetUpperBound(1);
 
         string msg = "";
-
+        //print out maze debug
         for (int i = rowMax; i >= 0; i--)
         {
             for (int j = 0; j <= colMax; j++)
@@ -116,10 +117,10 @@ public class MazeConstructor : MonoBehaviour
             }
             msg += "\n";
         }
-
         GUI.Label(new Rect(200, 200, 500, 500), msg);
     }
 
+    //displays the generated maze in 3D space and applies materials
     private void DisplayMaze()
     {
         GameObject go = new GameObject();

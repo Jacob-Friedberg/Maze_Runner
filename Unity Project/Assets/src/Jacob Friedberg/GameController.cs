@@ -10,18 +10,18 @@ public class GameController : MonoBehaviour
     //Fields
     [SerializeField] private bool stress = false;
 
+    //Private singleton
     private static MazeConstructor instance = null;
 
 
-    //2
-    private DateTime startTime;
-    private int timeLimit;
-    private int reduceLimitBy;
+    //Public variables
+    public float avgFrameRate;
+    public float deltaTime = 0.0f;
+    public int maxMazeSize;
 
-    private int score;
-    private bool goalReached;
 
-    //3
+
+    //Singleton GetInstance
     public static MazeConstructor getInstance()
     {
         if(instance == null)
@@ -33,51 +33,55 @@ public class GameController : MonoBehaviour
             return instance;
     }
 
+    //Runs on begin of scene.
     public void Start()
     {
+        //Construct singleton
         if(instance == null)
         {
             instance = GetComponent<MazeConstructor>();
-            StartNewGame();
+            startNewGame();
         }
+        //Singleton already exists
         else
-            StartNewGame();
+            startNewGame();
     }
 
-    //4
-    private void StartNewGame()
+    //Begin construction of maze
+    private void startNewGame()
     {
-
-        StartNewMaze();
+        startNewMaze();
     }
 
-    //5
-
-IEnumerator waiter(int i)
+//Pause loop for stress testing.
+IEnumerator waiter()
 {
+    //generate bigger and bigger mazes until <30fps i reached
+    for(int i = 3; i < 300; i+=2)
+    {
+        maxMazeSize = i;
+        print("Size:" + i);
         instance.GenerateNewMaze(i, i);
+        yield return new WaitForSeconds(1);
 
-    //Wait for 4 seconds
-    yield return new WaitForSeconds(4);
-
-
-    //Wait for 2 seconds
-    yield return new WaitForSeconds(2);
-            instance.GenerateNewMaze(i*i, i*i);
+            if(avgFrameRate < 30.0)
+            {
+                print("max playable maze:" + maxMazeSize);
+                Debug.Break();
+            }
+        instance.DisposeOldMaze();
+        yield return new WaitForSeconds(1);
+    }
 }
-
-    private void StartNewMaze()
+    //begin generation of new maze.
+    private void startNewMaze()
     {
         float x;
         float y;
         float z;
         if(stress)
         {
-            for (int i = 1; i < 10; i*=3)
-            {
-                StartCoroutine(waiter(i));
-            }
-           //instance.GenerateNewMaze(13, 15, OnStartTrigger, OnGoalTrigger);
+            StartCoroutine(waiter());
 
             x = instance.startCol * instance.hallWidth;
             y = 1;
@@ -86,15 +90,22 @@ IEnumerator waiter(int i)
         else
             instance.GenerateNewMaze(13, 15);
 
-         x =        instance.startCol *     instance.hallWidth;
+         x = instance.startCol * instance.hallWidth;
          y = 1;
-         z =        instance.startRow *     instance.hallWidth;
+         z = instance.startRow * instance.hallWidth;
     }
 
-    //6
+    //Update is called every frame, if the MonoBehaviour is enabled.
     void Update()
     {
-
+        //generate an Fps number
+        if(stress)
+        {
+            deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
+            avgFrameRate = 1.0f / deltaTime;
+            print("fps:" + avgFrameRate);
+        }
+        
     }
 }
 

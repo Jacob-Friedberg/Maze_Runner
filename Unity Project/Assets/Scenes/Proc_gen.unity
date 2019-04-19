@@ -143,11 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284c43f63b89e8a449dcb35997c5bf07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showDebug: 1
   mazeMat1: {fileID: 2100000, guid: d6ab1936599e71149825f449764e4979, type: 2}
   mazeMat2: {fileID: 2100000, guid: d6ab1936599e71149825f449764e4979, type: 2}
-  startMat: {fileID: 2100000, guid: c8296ee06001c4d39b0f615626264b85, type: 2}
-  treasureMat: {fileID: 2100000, guid: c5b8154923bae4fedbbb1f1aca66fd98, type: 2}
+  showDebug: 1
 --- !u!114 &1116144088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stress: 0
+  avgFrameRate: 0
+  deltaTime: 0
+  maxMazeSize: 0
 --- !u!4 &1116144089
 Transform:
   m_ObjectHideFlags: 0
