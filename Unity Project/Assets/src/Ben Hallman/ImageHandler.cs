@@ -67,7 +67,7 @@ class Colors : ColorPrototype
         this.blue = blue;
     }
 
-    // Creates a shallow copy
+    // Creates a shallow copy. This is also an example of static binding.
     public override ColorPrototype Clone()
     {
         return this.MemberwiseClone() as ColorPrototype;
