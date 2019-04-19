@@ -9,7 +9,7 @@ As will be described in the following section, this Image System simplifies some
 ## General Overview
 There are two primary components, the left and right controllers.
 
-## Getting Started (controllers)
+## Getting Started
 ### Setting up the Controller Manager
 1. Create a new empty public Image called `imageName`
 2. Create a new empty private float called `valf`
