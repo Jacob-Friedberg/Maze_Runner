@@ -87,3 +87,12 @@ Returns a specific IDragon object which is found on the "DragonSpawner" game obj
 
 ## DragonTypes
 _DragonTypes_ is an enumeration that helps for readability sake when requesting specific dragons from DragonFactory to DragonSpawner.
+
+```csharp
+public enum DragonTypes
+{
+    grundle = 0,
+    yorgle,
+    rhindle
+};
+```
