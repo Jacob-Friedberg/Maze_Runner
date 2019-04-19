@@ -4,7 +4,7 @@ While Unity provides many features regarding player and character management, pr
 ## Movement in Unity
 There are a couple of important components that the programmer needs to be aware of before starting. The HTC Vive controllers are responsible for managing the player's input and processing them in a meaningful way. Their input as movement is primarly controlled through the scripting system. Because of this, every movement-responsive game object needs code to control when and how they respond.
 
-As will be described in the following section, this Control System simplifies some of the implementation specific details related to movement.
+As will be described in the following section, this control system simplifies some of the implementation specific details related to movement.
 
 ## General Overview
 There are two primary components, the left and right controllers.
