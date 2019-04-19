@@ -1,0 +1,51 @@
+///////////////////////////////////////////
+// Cameron Dearien                       //
+// Software Engineering                  //
+// Dream Team, team lead 2               //
+// Documentation for pattern1, pattern2, //
+// static_binding, dynamic_binding,      //
+// Required, hit_controller              //
+///////////////////////////////////////////
+-=-=-=-=-=-=-=-=-=-=-=-=-=-
+pattern1
+    - pattern1 is a singleton pattern
+      intended to make sure that there
+      is only one of the cube it is
+      attached to
+-=-=-=-=-=-=-=-=-=-=-=-=-=-
+pattern2
+    - pattern2 is an iterater pattern.
+      I chose this pattern because it
+      was easy to implement and didn't
+      interfere with existing code
+-=-=-=-=-=-=-=-=-=-=-=-=-=-
+static_binding
+    - This file overwrites the complain
+      function from the dynamic_binding
+      file to say "I mean its not that bad"
+      when the function is called
+      this is also used to overwrite the 
+      output from the dynamic_binding file
+-=-=-=-=-=-=-=-=-=-=-=-=-=-
+dynamic_binding
+    - This file outputs "I am here to
+    complain about requirements" when
+    its complain function is called
+-=-=-=-=-=-=-=-=-=-=-=-=-=-
+Required
+    - This file calls the static_binding
+      and dynamic_binding complian functions
+      to produce the differing outputs due to
+      static and dynamic binding
+-=-=-=-=-=-=-=-=-=-=-=-=-=-
+hit_controller
+    - This script resides within the player
+      and watches for the controller to collide
+      with certain objects in the game. Once it
+      detects what object it has collided with it
+      changes the scene to the one associated with
+      the tag and places the player at the correct
+      position. This script had to reside inside
+      the player prefab because the player was the
+      only thing that could change the scene while
+      the game was running.
