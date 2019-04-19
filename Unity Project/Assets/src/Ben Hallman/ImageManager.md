@@ -1,7 +1,7 @@
 # Maze Runner Image System
 While Unity provides many features regarding image management, programmers may find that the time required for integrating this framework into an existing project to be rather tedious. This image system is designed to be fairly portable, extensible, and easy to integrate on every level of your project.
 
-## Movement in Unity
+## Colors in Unity
 There are a couple of important components that the programmer needs to be aware of before starting.
 
 As will be described in the following section, this Image System simplifies some of the implementation specific details related to movement.
