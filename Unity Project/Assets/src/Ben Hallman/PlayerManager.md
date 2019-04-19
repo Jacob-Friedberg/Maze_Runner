@@ -1,15 +1,13 @@
 # Maze Runner Player System
-While Unity provides many features regarding player and character management, programmers may find that the time required for integrating this framework into an existing project to be rather tedious. This sound system is designed to be fairly portable, extensible, and easy to integrate on every level of your project.
+While Unity provides many features regarding player and character management, programmers may find that the time required for integrating this framework into an existing project to be rather tedious. This player control system is designed to be fairly portable, extensible, and easy to integrate on every level of your project.
 
 ## Movement in Unity
-There are a couple of important components that the programmer needs to be aware of before starting. In Unity, there are a minimum of 3 objects needed for sound. An AudioListener, an AudioSource, and an AudioClip. The idea is that anything that needs to emit sound has an AudioSource component attached to it. The AudioSource is responsible for playing one sound at a time, and is primarly controlled through the scripting system. Because of this, every audio-responsive game object needs code to control when and how they emit sound.
+There are a couple of important components that the programmer needs to be aware of before starting. The HTC Vive controllers are responsible for managing the player's input and processing them in a meaningful way. Their input as movement is primarly controlled through the scripting system. Because of this, every movement-responsive game object needs code to control when and how they respond.
 
-Another important condition to note is that Unity only permits *one AudioListener at a time* to exist in the scene. We recommend that this AudioListener be attached to your player object, but we haven't seen any specific reason not to.
-
-As will be described in the following section, this Sound System simplifies some of the implementation specific details related to sound.
+As will be described in the following section, this Control System simplifies some of the implementation specific details related to movement.
 
 ## General Overview
-There are two primary components (and one example extension) included. The _SoundManager_, and the _CSound_ classes. You may also find the _CMusic_ class, which serves as an extension to _CSound_.
+There are two primary components, the left and right controllers.
 
 ## Getting Started (controllers)
 ### Setting up the Controller Manager
@@ -41,7 +39,7 @@ playerTarget.transform.position = targetVRParent.transform.position;
 
 
 ### Adding Player Movement
-Make sure that the object about to play sound has an `AudioSource` attached to it. Within your local object controller script, you can play added sounds with the following code:
+Within your local object controller script, you can move with the following code:
 ```csharp
 processControllerInput(left);
 processControllerInput(right);
