@@ -13,12 +13,17 @@ public class GameController : MonoBehaviour
     //Private singleton
     private static MazeConstructor instance = null;
 
-
     //Public variables
     public float avgFrameRate;
     public float deltaTime = 0.0f;
     public int maxMazeSize;
+    
+    int currentState = 0;
+    int numSavedStates = 0;
 
+    Caretaker caretaker = new Caretaker();
+
+    Originator originator = new Originator();
 
 
     //Singleton GetInstance
@@ -59,6 +64,7 @@ IEnumerator waiter()
     //generate bigger and bigger mazes until <30fps i reached
     for(int i = 3; i < 300; i+=2)
     {
+        Undo();
         maxMazeSize = i;
         print("Size:" + i);
         instance.GenerateNewMaze(i, i);
@@ -71,16 +77,19 @@ IEnumerator waiter()
             }
         instance.DisposeOldMaze();
         yield return new WaitForSeconds(1);
+        setState("On");
     }
 }
     //begin generation of new maze.
     private void startNewMaze()
     {
+        setState("On");
         float x;
         float y;
         float z;
         if(stress)
         {
+            setState("off");
             StartCoroutine(waiter());
 
             x = instance.startCol * instance.hallWidth;
@@ -93,6 +102,7 @@ IEnumerator waiter()
          x = instance.startCol * instance.hallWidth;
          y = 1;
          z = instance.startRow * instance.hallWidth;
+         setState("off");
     }
 
     //Update is called every frame, if the MonoBehaviour is enabled.
@@ -107,5 +117,82 @@ IEnumerator waiter()
         }
         
     }
+
+    public void setState(string state)
+    {
+        originator.Set(state);
+        caretaker.Add(originator.storeMem());
+
+        numSavedStates = caretaker.GetTotalSavedStates();
+        currentState = numSavedStates;
+    }
+
+    public string Undo()
+    {
+        if(currentState > 0)
+            currentState -= 1;
+
+        Memento prev = caretaker.Get(currentState);
+        string prevState = originator.RestoreMem(prev);
+        
+        return prevState;
+    }
+    public class Memento
+    {
+        public string state {get; protected set;}
+
+        public Memento(string state)
+        {
+            this.state = state;
+        }
+    }
+
+    public class Originator
+    {
+
+        public string state;
+
+
+        public void Set(string state)
+        {
+            print("originator: Current state is:" + state);
+        }
+
+        public Memento storeMem()
+        {
+            print("Originator: Storing state:" + this.state);
+            return new Memento(this.state);
+        }
+
+        public string RestoreMem(Memento memento)
+        {
+            state = memento.state;
+            print("Originator: restoring state:" + this.state);
+            return state;
+        }
+
+    }
+
+    public class Caretaker
+    {
+        List<Memento> savedStates = new List<Memento>();
+
+        public void Add(Memento m)
+        {
+            savedStates.Add(m);
+        }
+
+        public Memento Get(int i)
+        {
+            return savedStates[i];
+        }
+
+        public int GetTotalSavedStates()
+        {
+            return savedStates.Count;
+        }
+
+    }
+
 }
 
