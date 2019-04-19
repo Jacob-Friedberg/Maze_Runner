@@ -56,7 +56,8 @@ public class PlayerHealth : MonoBehaviour
         if (damaged)
         {
             // Sets the color of the damage image.
-            ImageHandler.Instance.ImageColor(ImageHandler.Instance.red);
+            // ImageHandler.Instance.ImageColor(ImageHandler.Instance.red);
+            GetComponent<ImageHandler>().ImageColor(Color.red);
         }
 
         // Reset the damaged flag.
@@ -99,7 +100,8 @@ public class PlayerHealth : MonoBehaviour
             GetComponent<GameOver>().Death();
 
             // Sets the color of the damage image.
-            ImageHandler.Instance.ImageColor(ImageHandler.Instance.Color.black);
+            // ImageHandler.Instance.ImageColor(ImageHandler.Instance.red);
+            GetComponent<ImageHandler>().ImageColor(Color.black);
 
             // Reset the initial health of the player.
             currentHealth = startingHealth;

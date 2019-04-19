@@ -10,13 +10,14 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour
 {
-    private const int LEFT = 0;
-    private const int RIGHT = 1;
+    private int left;
+    private int right;
 
     // A boolean representing if the game is being run in VR.
     private bool isVR;
     // A boolean representing if the target is in VR.
     private bool isTargetVR;
+    private bool doControllerUpdate;
     // A boolean representing if a controller is recieving movement input.
     private bool[] isDragging = new bool[2];
 
@@ -37,18 +38,35 @@ public class PlayerControl : MonoBehaviour
 
     AudioSource source;
 
+    public void Lock()
+    {
+        doControllerUpdate = false;
+    }
+    public void Unlock()
+    {
+        doControllerUpdate = true;
+    }
+
     void Start()
     {
+        // Ussage of static and dynamic binding.
+        Controller controllerLeft = new Left();
+        Controller controllerRight = new Right();
+        left = controllerLeft.GetControllerID();
+        right = controllerRight.GetControllerID();
+
         // Debug.Log("XR Device Present: " + XRDevice.isPresent);
         // Debug.Log("XR User Presence: " + XRDevice.userPresence);
         // Debug.Log("XR Model: " + XRDevice.model);
         // Debug.Log("XR Device Active: " + XRSettings.isDeviceActive);
         // Debug.Log("XR Enabled: " + XRSettings.enabled);
 
+        doControllerUpdate = true;
+
         source = GetComponent<AudioSource>();
 
-        controller[LEFT] = transform.Find("SteamVRObjects").Find("LeftController").gameObject;
-        controller[RIGHT] = transform.Find("SteamVRObjects").Find("RightController").gameObject;
+        controller[left] = transform.Find("SteamVRObjects").Find("LeftController").gameObject;
+        controller[right] = transform.Find("SteamVRObjects").Find("RightController").gameObject;
 
         // Adds the player movement sound.
         SoundManager.Instance.AddSoundFromFile("movement", "Attack Jump & Hit Damage Human Sounds/Jump & Attack 9");
@@ -89,59 +107,59 @@ public class PlayerControl : MonoBehaviour
         }
 
         // If the right controler is not recieving any movement input...
-        if (!isDragging[RIGHT])
+        if (!isDragging[right])
         {
             // Process the left controller's input.
-            processControllerInput(LEFT);
+            processControllerInput(left);
         }
         // If the left controler is not recieving any movement input...
-        if (!isDragging[LEFT])
+        if (!isDragging[left])
         {
             // Process the right controller's input.
-            processControllerInput(RIGHT);
+            processControllerInput(right);
         }
+
+        Unlock();
     }
 
     void processControllerInput(int handType)
     {
         // If the player is attempting to move...
-        if (grabWorldAction.GetState(hand[handType]))
+        if (doControllerUpdate)
         {
-            if (!isDragging[handType])
+            if (grabWorldAction.GetState(hand[handType]))
             {
-                isDragging[handType] = true;
-                // Marks the identified controler's startting position.
-                startPosition[handType] = controller[handType].transform.position;
+                if (!isDragging[handType])
+                {
+                    isDragging[handType] = true;
+                    startPosition[handType] = controller[handType].transform.position;
+                }
+
+                // Plays the player movement sound effect.
+                SoundManager.Instance.Play(source, "movement");
+
+                Vector3 offset = new Vector3(startPosition[handType].x - controller[handType].transform.position.x,
+                              0, startPosition[handType].z - controller[handType].transform.position.z);
+                transform.position += (moveScale * offset);
             }
-
-            // Creates an offset vector of the desired player's movement input.
-            Vector3 offset = new Vector3(startPosition[handType].x - controller[handType].transform.position.x, 0,
-                                          startPosition[handType].z - controller[handType].transform.position.z);
-
-            // Transforms the player's position in the world.
-            transform.position += (moveScale * offset);
-
-            // Plays the player movement sound effect.
-            SoundManager.Instance.Play(source, "movement");
-
+            else
+            {
+                // Mark the identified controller as not recieving input.
+                isDragging[handType] = false;
+            }
         }
-        else
-        {
-            // Mark the identified controller as not recieving input.
-            isDragging[handType] = false;
-        }
-    }
 
-    void OnCollisionEnter(Collision coll)
-    {
-        // if(gameObject.CompareTag("generated") || gameObject.CompareTag("collidable"))
-
-        // If the player runs into a colliadable game object...
-        if (coll.gameObject.name == "genderated" ||
-            coll.gameObject.name == "collidable")
+        void OnCollisionEnter(Collision coll)
         {
-            // Stop the player from passing through a collidable object.
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            // if(gameObject.CompareTag("generated") || gameObject.CompareTag("collidable"))
+
+            // If the player runs into a colliadable game object...
+            if (coll.gameObject.name == "genderated" ||
+                coll.gameObject.name == "collidable")
+            {
+                // Stop the player from passing through a collidable object.
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
         }
     }
 }

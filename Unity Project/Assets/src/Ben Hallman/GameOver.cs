@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 // The public class GameOver is an example of edited reuse from the Unity website.
 public class GameOver : MonoBehaviour
@@ -42,7 +43,7 @@ public class GameOver : MonoBehaviour
 
         // Plays the player death sound effect.
         source = GetComponent<AudioSource>();
-        SoundManager.Instance.Play(source, "myCoolSound");
+        SoundManager.Instance.Play(source, "death");
 
         // Teleports the player to the main menu location.
         SceneManager.LoadScene("world1");

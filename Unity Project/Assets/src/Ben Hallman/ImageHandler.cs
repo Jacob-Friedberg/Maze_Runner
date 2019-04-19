@@ -39,7 +39,7 @@ public class ImageHandler : MonoBehaviour
     public void ImageColor(Color color)
     {
         // Set the damageImage color
-        damageImage.color = color.Clone() as Colors;
+        damageImage.color = color;
 
         // Transition the color back to clear.
         damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
