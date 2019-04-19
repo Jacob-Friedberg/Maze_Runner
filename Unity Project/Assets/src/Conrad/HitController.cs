@@ -23,13 +23,15 @@ public class HitController : MonoBehaviour
            player.GetComponent<PlayerControl>().Lock();
             player.transform.position = new Vector3(3.75f, 0.5f, 3.75f);
             SceneManager.LoadScene("Proc_gen");
+            player.transform.position = new Vector3(3.75f, 0.5f, 3.75f);
+
         }
 
-        if(col.gameObject.CompareTag("ToMazeExit"))
+        if (col.gameObject.CompareTag("ToMazeExit"))
         {
             player.GetComponent<PlayerControl>().Lock();
             player.transform.position = new Vector3(12, 0, -307);
-            SceneManager.LoadScene("world1");
+            SceneManager.LoadScene("world2");
         }
 
         if(col.gameObject.CompareTag("MazeToCastle"))
