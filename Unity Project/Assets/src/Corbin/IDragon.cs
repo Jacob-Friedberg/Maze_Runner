@@ -9,7 +9,7 @@ using UnityEngine;
 public interface IDragon
 {
     IEnumerator takeDamage();
-    void spawn(int SceneID);
+    void spawn();
     IEnumerator behave();
     void addDragonSounds();
 }

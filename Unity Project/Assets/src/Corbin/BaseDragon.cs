@@ -31,7 +31,8 @@ public abstract class BaseDragon : MonoBehaviour, IDragon
     // IDragon Method Implementations
 
     // Loop of behavior for dragon until dragon dies.
-    public IEnumerator behave(){
+    public IEnumerator behave()
+    {
         WaitForSecondsRealtime wait = new WaitForSecondsRealtime(0.5f);
         while (health > 0)
         {
@@ -46,12 +47,15 @@ public abstract class BaseDragon : MonoBehaviour, IDragon
 
     // Virtual methods that allow abstract class to adhere to 
     // IDragon interface and defer implementation to subclasses.
-    public virtual IEnumerator takeDamage(){
+    public virtual IEnumerator takeDamage()
+    {
         yield break;
     }
-    public virtual void spawn(int SceneID){}
-    public void addDragonSounds(){
-        if(areSoundsAdded == false){
+    public virtual void spawn(){}
+    public void addDragonSounds()
+    {
+        if(areSoundsAdded == false)
+        {
             SoundManager.Instance.AddSoundFromFile("mob1.wav", "Monster SFX - 111518/monster/highlevel/mob1");
             SoundManager.Instance.AddSoundFromFile("mob1atk.wav", "Monster SFX - 111518/monster/highlevel/mob1atk");
             SoundManager.Instance.AddSoundFromFile("mob1die.wav", "Monster SFX - 111518/monster/highlevel/mob1die");
@@ -64,7 +68,8 @@ public abstract class BaseDragon : MonoBehaviour, IDragon
 
 
     // Causes a dragon to start random attack animation.
-    public void attack(){
+    protected void attack()
+    {
         SoundManager.Instance.Play(audioSourceComponent, "mob1atk.wav");
         switch ((int)Random.Range(0.0f, 2.99f))
         {
@@ -84,15 +89,17 @@ public abstract class BaseDragon : MonoBehaviour, IDragon
 
     // Controls the movement of a dragon and calls attack() when within specified
     // distance to player.
-    public IEnumerator move()
+    protected IEnumerator move()
     {
         if(Vector3.Distance(agent.transform.position, playerTarget.transform.position) > attackDistance 
-        || agent.hasPath == false){
+        || agent.hasPath == false)
+        {
             agent.isStopped = false;
             agent.SetDestination(playerTarget.transform.position);
             yield return new WaitForSecondsRealtime(0.75f);
         }
-        else {
+        else 
+        {
             agent.velocity = Vector3.zero;
             agent.isStopped = true;
             attack();
@@ -102,25 +109,32 @@ public abstract class BaseDragon : MonoBehaviour, IDragon
 
     // Allows dragon to lay dead on ground before despawning
     // after 5 seconds.
-    public IEnumerator despawnDelay(){
+    protected IEnumerator despawnDelay()
+    {
         yield return new WaitForSecondsRealtime(5);
     }
 
     // Allows dragon to have a damage grace periods 
     // immeadiatly after taking damage.
-    public IEnumerator damageBufferDelay(){
+    protected IEnumerator damageBufferDelay()
+    {
         yield return new WaitForSecondsRealtime(1);
     }
 
     // Allows dragon to finish its attack animation
     // before attack() is called again.
-    public IEnumerator finishAttackAnimationDelay(){
+    protected IEnumerator finishAttackAnimationDelay()
+    {
         yield return new WaitForSecondsRealtime(1);
     }
-    public IEnumerator ambientDragonSounds(){
+    protected IEnumerator ambientDragonSounds()
+    {
 
         yield return new WaitForSecondsRealtime(Random.Range(10.0f, 20.0f));
-        SoundManager.Instance.Play(audioSourceComponent, "mob1.wav");
+        if(health > 0)
+        {
+            SoundManager.Instance.Play(audioSourceComponent, "mob1.wav");
+        }
     }
        
 }

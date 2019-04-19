@@ -16,15 +16,16 @@ public class YorgleController : BaseDragon
     // DragonPrefab is the specific dragon object associated with this
     // particular "Concrete Product". In this case it is the Yorgle prefab object.
     [SerializeField] private GameObject dragonPrefab;
-    // This vector dictates the spawn locations for Yorgle depending on the scene
-    [SerializeField] private Vector3[] yorgleSpawnLocations = new Vector3[3];
+    // This vector dictates the spawn location for Yorgle depending on the scene
+    [SerializeField] private Vector3 yorgleSpawnLocations;
 
     // Spawn() overrides the IDragon methods implemented in BaseDragon
     // and intializes the dragon in the scene and initializes variables
     // from base dragon that are specific dragon depdendent
-    public override void spawn(int scene){
+    public override void spawn()
+    {
         type = DragonTypes.yorgle;
-        dragonObject = Instantiate(dragonPrefab, yorgleSpawnLocations[scene], dragonPrefab.transform.rotation);
+        dragonObject = Instantiate(dragonPrefab, yorgleSpawnLocations, dragonPrefab.transform.rotation);
         agent = dragonObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         dragonHeadObject = GameObject.Find("YorgleHead");
         playerTarget = GameObject.FindGameObjectWithTag("Target");
@@ -35,8 +36,8 @@ public class YorgleController : BaseDragon
     // TakeDamage() overrides the IDragon method implemented in BaseDragon
     // and decrements a dragon's health depending on what specific dragon
     // the IDragon is
-    public override IEnumerator takeDamage(){
-        Debug.Log("Taking Damage");
+    public override IEnumerator takeDamage()
+    {
         health -= 50;
         yield return damageBufferDelay();
     }

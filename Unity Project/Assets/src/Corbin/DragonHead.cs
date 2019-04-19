@@ -15,12 +15,15 @@ public class DragonHead : MonoBehaviour
     private IDragon controller;
 
     // Assign an IDragon instance to a DragonHead instance
-    public void Init(IDragon dragon){
+    public void Init(IDragon dragon)
+    {
         controller = dragon;
     }
     // Tell IDragon instance to take damage
-    public void OnCollisionEnter(Collision other) {
-        if(other.gameObject.CompareTag("Sword") == true){
+    private void OnCollisionEnter(Collision other) 
+    {
+        if(other.gameObject.CompareTag("Sword") == true)
+        {
             StartCoroutine(controller.takeDamage());
         }
     }

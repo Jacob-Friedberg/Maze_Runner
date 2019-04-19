@@ -25,26 +25,9 @@ public class DragonSpawner : MonoBehaviour
     // Variable to allow navmesh to be dynamically generated at runtime
     public NavMeshSurface surface;
     // SceneID controls the spawn locations of dragons.
-    [SerializeField] private int _sceneID;
-    public int sceneID{
-        get{
-            return _sceneID;
-        }
-        set{
-            if(value < 0){
-                _sceneID = 0;
-            }
-            else if(value > 2){
-                _sceneID = 2;
-            }
-            else{
-                _sceneID = value;
-            }
-        }
-    }
 
     // difficulty specifies the # of dragons to be spawned.
-    [SerializeField] private int _difficulty;
+    [SerializeField] private int _difficulty = 2;
     public int difficulty{
         get{
             return _difficulty;
@@ -75,14 +58,15 @@ public class DragonSpawner : MonoBehaviour
     private void Start()
     {
         surface.BuildNavMesh();
+
         for (int i = 0; i <= difficulty; i++)
         {
-            dragons.Add(dFactory.getDragon((DragonTypes)i,sceneID));
+            dragons.Add(dFactory.getDragon((DragonTypes)i));
         }
         foreach (IDragon item in dragons)
         {
             item.addDragonSounds();
-            item.spawn(sceneID);
+            item.spawn();
         }
         foreach (IDragon item in dragons)
         {
@@ -100,11 +84,13 @@ public class DragonFactory
     static private GameObject dragonSpawnerObject;
     // instance is the Singleton instance of DragonFactory
     static private DragonFactory instance;
-    private DragonFactory(){
+    private DragonFactory()
+    {
     }
     // getInstance returns the singleton instance of DragonFactory
     public static DragonFactory getInstance(){
-        if(instance == null){
+        if(instance == null)
+        {
             instance = new DragonFactory();
         }
         return instance;
@@ -112,11 +98,14 @@ public class DragonFactory
     
     // getDragon returns a specific IDragon object which is found on
     // the "DragonSpawner" game object based on an inputed DragonType
-    public IDragon getDragon(DragonTypes dragonType, int sceneID){
-        if(dragonSpawnerObject == null){
+    public IDragon getDragon(DragonTypes dragonType)
+    {
+        if(dragonSpawnerObject == null)
+        {
             dragonSpawnerObject = GameObject.Find("DragonSpawner");
         }
-        switch(dragonType){
+        switch(dragonType)
+        {
             case DragonTypes.grundle:
                 return dragonSpawnerObject.GetComponent<GrundleController>();
             case DragonTypes.yorgle:

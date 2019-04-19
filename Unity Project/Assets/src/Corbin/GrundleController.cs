@@ -16,15 +16,16 @@ public class GrundleController : BaseDragon
     // DragonPrefab is the specific dragon object associated with this
     // particular "Concrete Product". In this case it is the Grundle prefab object.
     [SerializeField] private GameObject dragonPrefab;
-    // This vector dictates the spawn locations for Grundle depending on the scene
-    [SerializeField] private Vector3[] grundleSpawnLocations = new Vector3[3];
+    // This vector dictates the spawn location for Grundle depending on the scene
+    [SerializeField] private Vector3 grundleSpawnLocations;
 
     // Spawn() overrides the IDragon methods implemented in BaseDragon
     // and intializes the dragon in the scene and initializes variables
     // from base dragon that are specific dragon depdendent 
-    public override void spawn(int scene){
+    public override void spawn()
+    {
         type = DragonTypes.grundle;
-        dragonObject = Instantiate(dragonPrefab, grundleSpawnLocations[scene], dragonPrefab.transform.rotation);
+        dragonObject = Instantiate(dragonPrefab, grundleSpawnLocations, dragonPrefab.transform.rotation);
         agent = dragonObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         dragonHeadObject = GameObject.Find("GrundleHead");
         playerTarget = GameObject.FindGameObjectWithTag("Target");
@@ -35,8 +36,8 @@ public class GrundleController : BaseDragon
     // TakeDamage() overrides the IDragon method implemented in BaseDragon
     // and decrements a dragon's health depending on what specific dragon
     // the IDragon is
-    public override IEnumerator takeDamage(){
-        Debug.Log("Taking Damage");
+    public override IEnumerator takeDamage()
+    {
         health -= 100;
         yield return damageBufferDelay();
     }
