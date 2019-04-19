@@ -69,81 +69,7 @@ public class MazeConstructor : MonoBehaviour
         }
     }
 
-
-    private void FindStartPosition()
-    {
-        int[,] maze = data;
-        int rMax = maze.GetUpperBound(0);
-        int cMax = maze.GetUpperBound(1);
-
-        for (int i = 0; i <= rMax; i++)
-        {
-            for (int j = 0; j <= cMax; j++)
-            {
-                if (maze[i, j] == 0)
-                {
-                    startRow = i;
-                    startCol = j;
-                    return;
-                }
-            }
-        }
-    }
-/* 
-    private void PlaceStartTrigger(TriggerEventHandler callback)
-    {
-        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        go.transform.position = new Vector3(startCol * hallWidth, .5f, startRow * hallWidth);
-        go.name = "Start Trigger";
-        go.tag = "Generated";
-
-        go.GetComponent<BoxCollider>().isTrigger = true;
-        go.GetComponent<MeshRenderer>().sharedMaterial = startMat;
-
-        TriggerEventRouter tc = go.AddComponent<TriggerEventRouter>();
-        tc.callback = callback;
-    }
-
-    private void PlaceGoalTrigger(TriggerEventHandler callback)
-    {
-        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        go.transform.position = new Vector3(goalCol * hallWidth, .5f, goalRow * hallWidth);
-        go.name = "Treasure";
-        go.tag = "Generated";
-
-        go.GetComponent<BoxCollider>().isTrigger = true;
-        go.GetComponent<MeshRenderer>().sharedMaterial = treasureMat;
-
-        TriggerEventRouter tc = go.AddComponent<TriggerEventRouter>();
-        tc.callback = callback;
-    }
-
-*/
-
-    private void FindGoalPosition()
-    {
-        int[,] maze = data;
-        int rMax = maze.GetUpperBound(0);
-        int cMax = maze.GetUpperBound(1);
-
-        // loop top to bottom, right to left
-        for (int i = rMax; i >= 0; i--)
-        {
-            for (int j = cMax; j >= 0; j--)
-            {
-                if (maze[i, j] == 0)
-                {
-                    goalRow = i;
-                    goalCol = j;
-                    return;
-                }
-            }
-        }
-    }
-
-
-    public void GenerateNewMaze(int sizeRows, int sizeCols,
-    TriggerEventHandler startCallback = null, TriggerEventHandler goalCallback = null)
+    public void GenerateNewMaze(int sizeRows, int sizeCols)
     {
         if (sizeRows % 2 == 0 && sizeCols % 2 == 0)
         {
@@ -154,21 +80,14 @@ public class MazeConstructor : MonoBehaviour
 
         data = dataGenerator.FromDimensions(sizeRows, sizeCols);
 
-        FindStartPosition();
-        FindGoalPosition();
-
         // store values used to generate this mesh
         hallWidth = meshGenerator.width;
         hallHeight = meshGenerator.length;
 
         DisplayMaze();
-
-        //PlaceStartTrigger(startCallback);
-        //PlaceGoalTrigger(goalCallback);
     }
 
-
-    private void OnGUI()
+      private void OnGUI()
     {
         if (!showDebug)
         {
@@ -199,7 +118,6 @@ public class MazeConstructor : MonoBehaviour
         }
 
         GUI.Label(new Rect(200, 200, 500, 500), msg);
-
     }
 
     private void DisplayMaze()

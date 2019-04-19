@@ -7,13 +7,11 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    //1W
-    [SerializeField] private FpsMovement player;
-    [SerializeField] private bool stress;
-    [SerializeField] private Text timeLabel;
-    [SerializeField] private Text scoreLabel;
+    //Fields
+    [SerializeField] private bool stress = false;
 
-    private MazeConstructor generator;
+    private static MazeConstructor instance = null;
+
 
     //2
     private DateTime startTime;
@@ -24,16 +22,32 @@ public class GameController : MonoBehaviour
     private bool goalReached;
 
     //3
+    public static MazeConstructor getInstance()
+    {
+        if(instance == null)
+        {
+            instance = instance.GetComponent<MazeConstructor>();
+            return instance;
+        }
+        else
+            return instance;
+    }
+
     public void Start()
     {
-        generator = GetComponent<MazeConstructor>();
-        StartNewGame();
+        if(instance == null)
+        {
+            instance = GetComponent<MazeConstructor>();
+            StartNewGame();
+        }
+        else
+            StartNewGame();
     }
 
     //4
     private void StartNewGame()
     {
-       
+
         StartNewMaze();
     }
 
@@ -41,15 +55,15 @@ public class GameController : MonoBehaviour
 
 IEnumerator waiter(int i)
 {
-    generator.GenerateNewMaze(i, i, OnStartTrigger, OnGoalTrigger);
+        instance.GenerateNewMaze(i, i);
 
     //Wait for 4 seconds
     yield return new WaitForSeconds(4);
 
-   
+
     //Wait for 2 seconds
     yield return new WaitForSeconds(2);
-     generator.GenerateNewMaze(i*i, i*i, OnStartTrigger, OnGoalTrigger);
+            instance.GenerateNewMaze(i*i, i*i);
 }
 
     private void StartNewMaze()
@@ -63,82 +77,24 @@ IEnumerator waiter(int i)
             {
                 StartCoroutine(waiter(i));
             }
-           // generator.GenerateNewMaze(13, 15, OnStartTrigger, OnGoalTrigger);
-            
-            x = generator.startCol * generator.hallWidth;
+           //instance.GenerateNewMaze(13, 15, OnStartTrigger, OnGoalTrigger);
+
+            x = instance.startCol * instance.hallWidth;
             y = 1;
-            z = generator.startRow * generator.hallWidth;
-            player.transform.position = new Vector3(x, y, z);
-           
-
-            goalReached = false;
-            player.enabled = true;
-
-            // restart timer
-            timeLimit -= reduceLimitBy;
-            startTime = DateTime.Now;
+            z = instance.startRow * instance.hallWidth;
         }
         else
-        generator.GenerateNewMaze(13, 15, OnStartTrigger, OnGoalTrigger);
+            instance.GenerateNewMaze(13, 15);
 
-         x = generator.startCol * generator.hallWidth;
+         x =        instance.startCol *     instance.hallWidth;
          y = 1;
-         z = generator.startRow * generator.hallWidth;
-        player.transform.position = new Vector3(x, y, z);
-
-        goalReached = false;
-        player.enabled = true;
-
-        // restart timer
-        timeLimit -= reduceLimitBy;
-        startTime = DateTime.Now;
+         z =        instance.startRow *     instance.hallWidth;
     }
 
     //6
     void Update()
     {
-        if (!player.enabled)
-        {
-            return;
-        }
 
-        int timeUsed = (int)(DateTime.Now - startTime).TotalSeconds;
-        int timeLeft = timeLimit - timeUsed;
-
-        if (timeLeft > 0)
-        {
-            timeLabel.text = timeLeft.ToString();
-        }
-        else
-        {
-            timeLabel.text = "TIME UP";
-            player.enabled = false;
-
-            Invoke("StartNewGame", 4);
-        }
-    }
-
-    //7
-    private void OnGoalTrigger(GameObject trigger, GameObject other)
-    {
-        Debug.Log("Goal!");
-        goalReached = true;
-
-        score += 1;
-        scoreLabel.text = score.ToString();
-
-        Destroy(trigger);
-    }
-
-    private void OnStartTrigger(GameObject trigger, GameObject other)
-    {
-        if (goalReached)
-        {
-            Debug.Log("Finish!");
-            player.enabled = false;
-
-            Invoke("StartNewMaze", 4);
-        }
     }
 }
 
