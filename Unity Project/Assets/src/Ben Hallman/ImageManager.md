@@ -1,61 +1,46 @@
 # Maze Runner Image System
-While Unity provides many features regarding image management, programmers may find that the time required for integrating this framework into an existing project to be rather tedious. This player control system is designed to be fairly portable, extensible, and easy to integrate on every level of your project.
+While Unity provides many features regarding image management, programmers may find that the time required for integrating this framework into an existing project to be rather tedious. This image system is designed to be fairly portable, extensible, and easy to integrate on every level of your project.
 
 ## Movement in Unity
-There are a couple of important components that the programmer needs to be aware of before starting. The HTC Vive controllers are responsible for managing the player's input and processing them in a meaningful way. Their input as movement is primarly controlled through the scripting system. Because of this, every movement-responsive game object needs code to control when and how they respond.
+There are a couple of important components that the programmer needs to be aware of before starting.
 
-As will be described in the following section, this Control System simplifies some of the implementation specific details related to movement.
+As will be described in the following section, this Image System simplifies some of the implementation specific details related to movement.
 
 ## General Overview
 There are two primary components, the left and right controllers.
 
 ## Getting Started (controllers)
 ### Setting up the Controller Manager
-1. Create a new empty private int called `left`
-2. Create a new empty private int called `right`
-3. Create a new empty private bool called `doControllerUpdate`
-4. Create a public GameObject called `playerTarget`
-4. Add the Controller, Left, and Right scripts
+1. Create a new empty public Image called `imageName`
+2. Create a new empty private float called `valf`
+3. Add the following: `ColorManager colormanager = new ColorManager()`
+4. Add the following: `UnityEngine`, `using UnityEngine.UI`, `System.Collections`, and `System.Collections.Generic`.
 
-### Adding Controllers
-The programmer can then add the controllers during startup.
+### Adding Colors
+The programmer can then add colors during startup.
 Example:
 
 ```csharp
-Controller controllerLeft = new Left();
-Controller controllerRight = new Right();
-left = controllerLeft.GetControllerID();
-right = controllerRight.GetControllerID();
-doControllerUpdate = true
-```
+// Initialize with standard colors
+colormanager["red"] = new Colors(255, 0, 0);
+colormanager["green"] = new Colors(0, 255, 0);
+colormanager["blue"] = new Colors(0, 0, 255);
+colormanager["black"] = new Colors(0, 0, 0);
+colormanager["white"] = new Colors(255, 255, 255);
 
-Then during update add the following:
-
-```csharp
-playerTarget.transform.SetParent(targetVRParent.transform);
-playerTarget.transform.position = targetVRParent.transform.position;
-```
-
-
-
-### Adding Player Movement
-Within your local object controller script, you can move with the following code:
-```csharp
-processControllerInput(left);
-processControllerInput(right);
+// Clones selected colors
+Colors red = colormanager["red"].Clone() as Colors;
+Colors black = colormanager["black"].Clone() as Colors;
 ```
 
 ----------------------------------------------------------
 # Class Descriptions
 
-## PlayerManager
-The _PlayerManager_ is built to handle the loading of new audio resources, and provides a *static* interface for calling upon these resources. The _SoundManager_ provides the following public methods.
+## Image Handler
+The _ImageHandler_ is built to handle the loading of new images and colors, and provides a *static* interface for calling upon these resources. The _ImageHandler_ provides the following public methods.
 ```csharp
-processControllerInput(int handType);
-void OnCollisionEnter(Collision coll);
+Colors(int red, int green, int blue);
 ```
-### `processControllerInput(int handType)`
-Processes all of the input for each controllers
 
-### `OnCollisionEnter(Collision coll);`
-Handles collisions accordingly when they occur. For example, if the player attempts to walk through a wall this function will prevent that.
+### `Colors(int red, int green, int blue);`
+This is the Colors constructor.
